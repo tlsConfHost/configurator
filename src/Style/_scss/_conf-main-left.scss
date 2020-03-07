@@ -1,0 +1,364 @@
+.conf-main-left {
+    width: $main-left-width;
+    &-top {
+        &-container_l0 {
+            @include main-boxes(100%, 25%);
+            flex-direction: column;
+            &-list {
+                @include list_l0;
+            }
+            &-panel {
+                @include panel;
+                &--selected {
+                    display: flex;
+                }
+            }
+        }
+        &-container_l1 {
+            @include main-left-windows;
+            flex-direction: column;
+            &-list {
+                @include zero-m-and-p;
+                border-bottom: $border-panel;
+                background: $tabs-panel-gradient;
+                &-tab {
+                    @include tab_l1;
+    
+                }
+            }
+            &-panel {
+                @include panel;
+                width: 100%;
+                padding: $panels-padding;
+                &--selected {
+                    flex: 1;
+                    display: block;
+                }
+            }
+        }
+        &-container_l2 {
+            @include horizontal-menu;
+            &-card-img {
+                padding: 2px 2px;
+                &--selected {
+                    border-color: hotpink;
+                }
+            }
+        }
+    }
+    &-middle {
+        &-container_l0 {
+
+            @include main-boxes(100%, 40%);
+            padding: $main-padding 0;
+            flex-direction: column;
+            &-list {
+                @include list_l0;
+            }
+            &-panel {
+                @include panel;
+                @include main-left-windows;
+                padding: $panels-padding;
+                display: none;
+                &--selected {
+                    display: flex;
+                }
+            }
+        }
+        &-container_l1 {
+            display: grid;
+            grid-template-columns: minmax(10%, 20%) min-content;
+            padding: $main-padding;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            column-gap: $main-padding;
+            &-desc {
+                & > p, & > ul > li {
+                    margin: 5px 0;
+                }
+                & > ul {
+                    padding-inline-start: 15px;
+                    margin: 0;
+                }
+                &-check-box {
+                    @include check-box;
+                    color: transparent;
+                    &--hiden {
+                        color: black
+                    }
+                }
+            }
+            &-layout-table {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                padding: 0 5px;
+                &-top {
+                    height: 20%;
+                    margin: 0 20px;
+                    background-color: $background-and-separator-color;
+                    border-radius: 3px 3px 0 0;
+                    box-shadow: $shadow-top-left, $shadow-top-right;
+                    z-index: 1;
+                }
+                &-middle {
+                    padding: 20px 0;
+                    display: flex;
+                    height: 75%;
+                    box-sizing: border-box;
+                    background-color: $background-and-separator-color;
+                    box-shadow: $shadow-bottom-left, $shadow-bottom-right, $shadow-top-left, $shadow-top-right;
+                    border-radius: $border-radius-value;
+                    z-index: 0;
+                    &-container {
+                        padding: 0 8px;
+                        margin: auto 4px;
+                        border: $border gray;
+                        border-radius: $layout-border-radius-value;
+                        box-sizing: border-box;
+                        background-color: $main-windows-background-color;
+                        &-signal-slots {
+                            box-sizing: border-box;
+                            height: 106px;
+                            &--displayed {
+                                display: inline-block;
+                            }
+                            &--hiden {
+                                display: none;
+                            }
+                        }
+                    }
+                    &-power-sockets {
+                        border: $border gray;
+                        border-collapse: collapse;
+                        margin: auto 4px;
+                        padding: 9px;
+                        height: 80px;
+                        background-color: $main-windows-background-color;
+                    }
+                    &-conference-control, &-conference-control-double-frame {
+                        border: $border gray;
+                        margin: 0 4px;
+                        padding: 8px;
+                        height: 106px;
+                        border-radius: $layout-border-radius-value;
+                        background-color: $main-windows-background-color;
+                    }
+                }
+                &-bottom {
+                    height: 5%;
+                    margin: 0 10px;
+                    background-color: $background-and-separator-color;
+                    border-radius: 0 0 3px 3px;
+                    box-shadow: $shadow-bottom-left, $shadow-bottom-right;
+                    z-index: 1;
+                }
+            }
+            &-layout-wall-ipl {
+                height: 170px;
+                display: flex;
+                box-sizing: border-box;
+                padding: 3px 14px;
+                border: $border gray;
+                background-color: $background-and-separator-color;
+                border-radius: $layout-border-radius-value;
+                &--hiddenCover {
+                    visibility: hidden;
+                }
+                &-support-frame {
+                    padding: 0 12px;
+                    visibility: visible;
+                    display: flex;
+                    flex-direction: column;
+                    border: $border transparent;
+                    position: relative;
+                    margin: 0 1px;
+                    border-radius: $layout-border-radius-value;
+                    z-index: 0;
+                    &--hiddenCover {
+                        border-color: $support-frame-border-color;
+                        box-sizing: border-box;
+                        background-color: $background-and-separator-color;
+                        &-left-attachment-point {
+                            @include attachment-point;
+                            left: 1px;
+                            border-radius: 70% 10px 10px 70%;
+                            &::before {
+                                right: -4px;
+                                border-radius: 50% 0 0 50%;
+                            }
+                        }
+                        &-right-attachment-point {
+                            @include attachment-point;
+                            right: 1px;
+                            border-radius: 10px 70% 70% 10px;
+                            &::before {
+                                left: -4px;
+                                border-radius: 0 50% 50% 0;
+                            }
+                        }
+                    }
+                    &-top {
+                        height: 25px;
+                        background-color: $background-and-separator-color;
+                        box-sizing: border-box;
+                        position: relative;
+                        &--hiddenCover {
+                            visibility: hidden;
+                        }
+                        .dot {
+                            @include dot;
+                            top: 1px;
+                            visibility: visible;
+                            &--hiddenCover {
+                                top: 3px;
+                            }
+                        }
+                    }
+                    &-middle {
+                        margin: 0 2px;
+                        flex: 1;
+                        border-radius: $border-radius-value;
+                        box-sizing: border-box;
+                        background-color: $main-windows-background-color;
+                        display: flex;
+                        position: relative;
+                        overflow: hidden;
+                        &--hiddenCover {
+                            overflow: visible;
+                        }
+                        &-signal-slots {
+                            box-sizing: border-box;
+                            height: 133px;
+                            position: relative;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            &--ps {
+                                height: 114px;
+                            }
+                            &--displayed {
+                                display: inline-block;
+                            }
+                            &--hiden {
+                                display: none;
+                            }
+                        }
+                    }
+                    &-bottom {
+                        height: 25px;
+                        background-color: $background-and-separator-color;
+                        position: relative;
+                        &--hiddenCover {
+                            visibility: hidden;
+                        }
+                        .dot {
+                            @include dot;
+                            bottom: 1px;
+                            visibility: visible;
+                            &--hiddenCover {
+                                bottom: 3px;
+                            }
+                        }
+                    }
+                }
+                &-separator {
+                    height: 100%;
+                    width: 25px;
+                    background-color: $background-and-separator-color;
+                }
+            }
+            &-layout-wall-wp {
+                position: relative;
+                height: 165px;
+                &-frame-img {
+                    height: 100%
+                }
+                &-support-frame {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    display: flex;
+                    transform: translate(-50%, -50%);
+                    border-radius: 5px;
+                    overflow: hidden;
+                    &-signal-slots {
+                        box-sizing: border-box;
+                        height: 133px;
+                        &--displayed {
+                            display: inline-block;
+                        }
+                        &--hiden {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-bottom {
+        &-container_l0 {
+            @include main-boxes(100%, 25%);
+            flex-direction: column;
+            &-list {
+                @include list_l0;
+            }
+            &-panel {
+                @include panel;
+                &--selected {
+                    display: flex;
+                }
+            }
+        }
+        &-container_l1 {
+            @include main-left-windows;
+            flex-direction: column;
+            &-list {
+                @include zero-m-and-p;
+                border-bottom: $border-panel;
+                background: $tabs-panel-gradient;
+                &-tab {
+                    @include tab_l1;
+                }
+            }
+            &-panel {
+                @include panel;
+                padding: $panels-padding;
+                &--selected {
+                    flex: 1;
+                    display: block;
+                }
+            }
+        }
+        &-container_l2 {
+            @include horizontal-menu;
+            &-card {
+                &-img {
+                    padding: 2px 10px;
+                    cursor: grab;
+                }
+                &:hover {
+                    z-index: 1;
+                }
+                &:hover > &-desc {
+                    display: flex;
+                }
+            }
+        }
+    }
+    &-instruction {
+        padding: 2px 0;
+        width: 100%;
+        height: 5%;
+        box-sizing: border-box;
+        &-container {
+            border: $border-panel;
+            border-radius: $border-radius-value;
+            background-color: $main-windows-background-color;
+            &-p {
+                margin: 0;
+            }
+        }
+    }
+}

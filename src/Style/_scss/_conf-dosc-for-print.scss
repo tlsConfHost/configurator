@@ -1,0 +1,119 @@
+.component-to-print {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    height: 100%;
+    position: relative;
+    background-color: white;
+    &-logo {
+        height: 100px;
+        padding: 5px;
+        align-self: flex-end;
+    }
+    &-customerInfo {
+        margin: 0 40px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        &-tlsContact {
+            align-self: center;
+            margin: 0;
+            & span {
+                padding: 0 2px;
+                color: #00b7ff;
+                &:first-child {
+                    padding-left: 0;
+                }
+            }
+        }
+        &-companyName {
+            align-self: center;
+        }
+        h2 {
+            margin: 10px 20px;
+        }
+        & table {
+            border-spacing: 0;
+
+            & tr td {
+                padding: 0;
+                &:first-child {
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+    &-configuration {
+        width: 100%;
+        display: grid;
+        grid-template-columns: max-content max-content auto auto max-content;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        margin: 20px 0;
+        p {
+            border-bottom: 1px solid rgb(206, 206, 206);
+            margin: 2px 0;
+            padding: 0 10px;
+            text-align: center;
+        }
+        p:nth-child(3) {
+            grid-column: 3 / span 2;
+        }
+        &-header {
+            font-weight: bold;
+            border-bottom: 1px solid black !important;
+        }
+        &-desc {
+            text-align: left !important;
+        }
+    }
+    &-contact-info {
+        margin-top: auto;
+        display: grid;
+        font-size: 0.6em;
+        grid-template-columns: 1fr 1fr 2fr;
+        padding: 0 10px;
+        align-self: center;
+        &-col1 {
+            border-left: 2px dotted black;
+            border-right: 2px dotted black;
+            padding: 0 10px;
+            display: grid;
+            grid-template-rows: repeat(6, min-content);
+            column-gap: 5px;
+            p {
+                margin: 0;
+            }
+            p:first-child {
+                color: #00b7ff;
+                font-size: 0.3rem;
+                span{
+                    font-size: 0.6rem;
+                }
+            }
+        }
+        &-col2 {
+            border-right: 2px dotted black;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: repeat(4, min-content);
+            column-gap: 5px;
+            p {
+                white-space: nowrap;
+                margin: 0;
+            }
+        }
+        &-col3 {
+            border-right: 2px dotted black;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: repeat(3, min-content);
+            column-gap: 5px;
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

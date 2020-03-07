@@ -1,0 +1,213 @@
+@mixin zero-m-and-p {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin zero-pos {
+    left: 0;
+    top: 0;
+}
+/***MAIN BOXES***/
+@mixin main-boxes($width, $height) {
+    height: $height;
+    width: $width;
+    display: flex;
+    box-sizing: border-box;
+}
+
+@mixin main-windows-no-borders {
+    box-sizing: border-box;
+    background-color: $main-windows-background-color;
+    border-radius: $border-radius-value;
+    overflow: hidden;
+}
+
+@mixin main-windows {
+    @include main-windows-no-borders;
+    border: $border-panel;
+}
+
+@mixin main-left-windows-source {
+    width: 100%;
+    display: flex;
+    flex: 1;
+}
+
+@mixin main-left-windows-no-borders {
+    @include main-windows-no-borders;
+    @include main-left-windows-source;
+}
+
+@mixin main-left-windows {
+    @include main-windows;
+    @include main-left-windows-source;
+}
+
+@mixin main-right-windows-source {
+    width: 100%;
+}
+
+@mixin main-right-windows-no-borders {
+    @include main-right-windows-no-borders;
+    @include main-right-windows-source;
+}
+
+@mixin main-right-windows {
+    @include main-windows;
+    @include main-right-windows-source;
+}
+
+@mixin horizontal-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    box-sizing: border-box;
+    &-card {
+        position: relative;
+        z-index: 0;
+        &-img {
+            height: 97px;
+            border: 1px solid transparent;
+            border-radius: $border-radius-value;
+        }
+        &-desc {
+            @include zero-m-and-p;
+            position: absolute;
+            display: none;
+            top: 5%;
+            &-text {
+                position: relative;
+                background-color: white;
+                white-space: nowrap;
+                border: 1px solid black;
+                padding: 1px 5px;
+            }
+            &-arrow {
+                position: absolute;
+                top: 50%;
+                height: 0;
+                transform: translateY(-50%);
+                border-top: 0.4rem solid transparent;
+                border-bottom: 0.4rem solid transparent;
+            }
+        }
+    }
+}
+
+@mixin panel {
+    flex: 1;
+    display: none;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+@mixin list_l0 {
+    @include zero-m-and-p;
+    z-index: 0;
+    overflow: hidden;
+    &-tab{
+        display: inline-block;
+        margin-left: 10px;
+        border-radius: 15px 3px 0 0;
+        background: $tabs-panel-gradient;
+        padding: $menu-paddings;
+        list-style: none;
+        cursor: pointer;
+        position: relative;
+        outline: none;
+        &::before {
+            @include zero-pos;
+            position: absolute;
+            box-sizing: border-box;
+            background: inherit;
+            width: $tab_l0-tilt-width;
+            border-radius: $tab_l0-tilt-radius;
+            transform: $tab_l0-tilt-skew;
+            height: 100%;
+            content: "";
+            z-index: -1;
+        }
+        &--selected {
+            background: $tabs-gradient;
+        }
+        &::focus {
+            outline: none;
+        }
+    }
+}
+@mixin tab_l1 {
+
+    display: inline-block;
+    border-bottom: none;
+    border-right: $border $background-and-separator-color;
+    position: relative;
+    list-style: none;
+    padding: $menu-paddings;
+    cursor: pointer;
+    position: static;
+    &--selected {
+        background: $tabs-gradient;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin dot {
+    @include zero-m-and-p;
+    position: absolute;
+    box-sizing: border-box;
+    border: 4px double $support-frame-border-color;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 14px;
+    width: 14px;
+    background-color: white;
+    &--hiddenCover {
+        border: $border $support-frame-border-color;
+        width: 8px;
+        height: 8px;
+    }
+}
+
+@mixin contact-info-table {
+    padding: 3px;
+    font-size: inherit;
+    td {
+        vertical-align: top;
+    }
+}
+
+@mixin check-box {
+    @include zero-m-and-p;
+    right: 1px;
+    top: 1px;
+    width: 20px;
+    height: 20px;
+    border: $border-panel;
+    border-radius: $border-radius-value;
+    background-color: $main-windows-background-color;
+}
+
+@mixin attachment-point {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 27px;
+    background-color: $main-windows-background-color;
+    box-shadow: inset 0 0 2px $support-frame-border-color;
+    overflow: hidden;
+    &::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 22px;
+        box-shadow: 0 0 2px $support-frame-border-color;
+        background-color: $background-and-separator-color;
+    }
+}

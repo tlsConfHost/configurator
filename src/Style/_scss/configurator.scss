@@ -1,0 +1,131 @@
+/*** COLORS ***/
+$main-color: #0180BE;
+$main-color-dark1: #166C96;
+$main-color-dark2: #275972;
+$main-color-dark3: #324953;
+$main-color-dark4: #393939;
+$main-color-light1: #48A0B9;
+$main-color-light2: #86B7BD;
+$main-color-light3: #BACBCC;
+$main-color-light4: #E4E4E4;
+$main-color-light5: #F1EEEE;
+$main-color-strong: rgb(0, 102, 255);
+$main-color-light: rgb(172, 206, 255);
+$darkgrey: #333;
+$background-and-separator-color:  $main-color-light5;
+$support-frame-border-color: rgb(128, 128, 128);
+
+/***MENU***/
+$menu-height: 30%;
+$middle-height: 100% - $menu-height*2;
+/***BORDERS***/
+$border: 1px solid;
+$border-panel: 1px solid $main-color-light2;
+$main-windows-borders: $border $main-color-strong;
+$border-radius-value: 3px;
+$layout-border-radius-value: 5px;
+/***tab-background***/
+$tabs-gradient: linear-gradient($main-color-light4, $main-color-light3);
+$tabs-panel-gradient: linear-gradient($main-color-light2, $main-color-light3);
+$main-windows-background-color: white;
+/***tab_l0-tilt***/
+$tab_l0-tilt-width: 10px;
+$tab_l0-tilt-radius: 5px 0 0 0;
+$tab_l0-tilt-skew: skew(-30deg, 0);
+/***tab_l1***/
+$main-padding: 5px;
+$menu-paddings: 3px 2.84px;
+$panels-padding: 5px;
+/***horizontal-menu-card***/
+$card-height: 129px;
+$card-padding: 2px;
+$card-margin-top-menu: 10px 2px;
+$card-margin-bottom-menu: 0 10px;
+/***conf-main-left***/
+$main-left-width: 70%;
+/***conf-main-right***/
+$main-right-width: 100%-$main-left-width;
+
+$article-width: 24%;
+$desc-width: 75%;
+$shadow-color: black;
+$shadow-top-left: -1px -1px $shadow-color;
+$shadow-bottom-left: -1px 1px $shadow-color;
+$shadow-bottom-right: 1px 1px $shadow-color;
+$shadow-top-right: 1px -1px $shadow-color;
+$conf-desc-line-padding: 2px;
+
+$specs-menu-width: 8px;
+
+@import 'mixins';
+
+/* FONT INTER */
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif;}
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+
+body {
+    font-family: Inter;
+    font-weight: 500;
+}
+.conf-main {
+    display: flex;
+    width: 1000px;
+    height: 700px;
+    padding: $main-padding;
+    background-color: $background-and-separator-color;
+    font-size: 12px;
+    position: relative;
+    &-form-active>* {
+        filter: blur(5px);
+    }
+}
+
+@import 'conf-main-left';
+@import 'conf-main-right';
+@import 'conf-dosc-for-print';
+@import 'print-form';
+
+/***** LEFT MIDDLE WINDOW *****/
+
+.cover-hiden {
+    box-shadow: none;
+}
+
+.addTabs {
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 100%;
+    outline: none;
+    background-color: #fff;
+    margin: 0 10px;
+    border: $border-panel;
+    padding: 0 4px;
+}
+
+/***** LEFT BOTTOM WINDOW *****/
+
+.module-list-bottom {
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+}
+
+.horizontal-scrolling__wrapper{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.simplebar-scrollbar:before {
+  background: $main-color;
+}
+
+.test-button {
+    position: absolute;
+    opacity: 25%;
+    background-color: $main-color-dark3;
+    border-radius: 5px;
+    border: 1px solid $main-color-dark4;
+    right: 0; 
+}
