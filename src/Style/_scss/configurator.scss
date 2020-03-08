@@ -69,11 +69,11 @@ body {
 .conf-main {
     display: flex;
     width: 1012px;
-    height: 675px;
+    height: 674px;
     box-sizing: border-box;
     padding: $main-padding;
     background-color: #ffffffcf;
-    border: 1px solid #d2d2d2;
+    border: 1px solid $main-color-light3;
     font-size: 12px;
     position: relative;
     &-form-active>* {
