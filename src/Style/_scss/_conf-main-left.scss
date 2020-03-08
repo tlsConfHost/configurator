@@ -1,40 +1,12 @@
 .conf-main-left {
     width: $main-left-width;
+    height: 99.9%;
     &-top {
         &-container_l0 {
-            @include main-boxes(100%, 25%);
-            flex-direction: column;
-            &-list {
-                @include list_l0;
-            }
-            &-panel {
-                @include panel;
-                &--selected {
-                    display: flex;
-                }
-            }
+            @include left-menus-top_bottom-l0;
         }
         &-container_l1 {
-            @include main-left-windows;
-            flex-direction: column;
-            &-list {
-                @include zero-m-and-p;
-                border-bottom: $border-panel;
-                background: $tabs-panel-gradient;
-                &-tab {
-                    @include tab_l1;
-    
-                }
-            }
-            &-panel {
-                @include panel;
-                width: 100%;
-                padding: $panels-padding;
-                &--selected {
-                    flex: 1;
-                    display: block;
-                }
-            }
+            @include left-menus-top_bottom-l1;
         }
         &-container_l2 {
             @include horizontal-menu;
@@ -299,37 +271,10 @@
     }
     &-bottom {
         &-container_l0 {
-            @include main-boxes(100%, 25%);
-            flex-direction: column;
-            &-list {
-                @include list_l0;
-            }
-            &-panel {
-                @include panel;
-                &--selected {
-                    display: flex;
-                }
-            }
+            @include left-menus-top_bottom-l0;
         }
         &-container_l1 {
-            @include main-left-windows;
-            flex-direction: column;
-            &-list {
-                @include zero-m-and-p;
-                border-bottom: $border-panel;
-                background: $tabs-panel-gradient;
-                &-tab {
-                    @include tab_l1;
-                }
-            }
-            &-panel {
-                @include panel;
-                padding: $panels-padding;
-                &--selected {
-                    flex: 1;
-                    display: block;
-                }
-            }
+            @include left-menus-top_bottom-l1;
         }
         &-container_l2 {
             @include horizontal-menu;
@@ -348,7 +293,7 @@
         }
     }
     &-instruction {
-        padding: 2px 0;
+        padding-top: 2px;
         width: 100%;
         height: 5%;
         box-sizing: border-box;
@@ -356,6 +301,7 @@
             border: $border-panel;
             border-radius: $border-radius-value;
             background-color: $main-windows-background-color;
+            box-sizing: border-box;
             &-p {
                 margin: 0;
             }

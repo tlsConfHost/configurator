@@ -2,7 +2,7 @@
   "name": "tlsconf",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://tlsconfhost.github.io/tlsconfigurator",
+  "homepage": ".",
   "engines": {
     "npm": "6.13.1",
     "node": "13.3.0"

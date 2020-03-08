@@ -118,7 +118,6 @@
         &::before {
             @include zero-pos;
             position: absolute;
-            box-sizing: border-box;
             background: inherit;
             width: $tab_l0-tilt-width;
             border-radius: $tab_l0-tilt-radius;
@@ -209,5 +208,40 @@
         height: 22px;
         box-shadow: 0 0 2px $support-frame-border-color;
         background-color: $background-and-separator-color;
+    }
+}
+
+@mixin left-menus-top_bottom-l0 {
+    @include main-boxes(100%, 25%);
+        flex-direction: column;
+        &-list {
+            @include list_l0;
+        }
+        &-panel {
+            @include panel;
+            &--selected {
+                display: flex;
+            }
+        }
+}
+
+@mixin left-menus-top_bottom-l1 {
+    @include main-left-windows;
+    flex-direction: column;
+    &-list {
+        @include zero-m-and-p;
+        border-bottom: $border-panel;
+        background-color: $main-color-light2;
+        &-tab {
+            @include tab_l1;
+        }
+    }
+    &-panel {
+        @include panel;
+        padding: $panels-padding;
+        &--selected {
+            flex: 1;
+            display: block;
+        }
     }
 }

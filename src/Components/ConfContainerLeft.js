@@ -11,7 +11,7 @@ const ConfContainerLeft = (props) => {
             level={0}
             dataObj={props.framesForTopMenu}
             onClick={props.platformHandler}
-            isReset={true}
+            reseting={props.resetConfOnChange}
             frameResetHandler={props.frameResetHandler}
         />
         <ConfContainerLeftInstruction
@@ -72,7 +72,7 @@ const TopAndBottomMenu = props => {
                     className={className+"-list-tab"}
                     selectedClassName={className+"-list-tab--selected"}
                     key={inf}
-                    onClick={(props.isReset) ? () => props.frameResetHandler() : null}
+                    onClick={(props.reseting) ? () => props.frameResetHandler() : null}
                 >
                     {inf}
                 </Tab>)}
@@ -92,7 +92,7 @@ const TopAndBottomMenu = props => {
                             draggable={props.draggable}
                             frameResetHandler={props.frameResetHandler}
                             location={props.location}
-                            isReset={props.isReset}
+                            reseting={props.reseting}
                         /> : <CardMenu 
                             pathArray = {[...props.pathArray, inf]}
                             level = {props.level+1}

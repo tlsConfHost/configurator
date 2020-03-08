@@ -1,16 +1,13 @@
 /*** COLORS ***/
-$main-color: #0180BE;
 $main-color-dark1: #166C96;
 $main-color-dark2: #275972;
 $main-color-dark3: #324953;
 $main-color-dark4: #393939;
-$main-color-light1: #48A0B9;
-$main-color-light2: #86B7BD;
+$main-color-light1: #337ab7;
+$main-color-light2: #b0cadd;
 $main-color-light3: #BACBCC;
 $main-color-light4: #E4E4E4;
 $main-color-light5: #F1EEEE;
-$main-color-strong: rgb(0, 102, 255);
-$main-color-light: rgb(172, 206, 255);
 $darkgrey: #333;
 $background-and-separator-color:  $main-color-light5;
 $support-frame-border-color: rgb(128, 128, 128);
@@ -20,8 +17,7 @@ $menu-height: 30%;
 $middle-height: 100% - $menu-height*2;
 /***BORDERS***/
 $border: 1px solid;
-$border-panel: 1px solid $main-color-light2;
-$main-windows-borders: $border $main-color-strong;
+$border-panel: 1px solid #8ac0e7;
 $border-radius-value: 3px;
 $layout-border-radius-value: 5px;
 /***tab-background***/
@@ -72,10 +68,12 @@ body {
 }
 .conf-main {
     display: flex;
-    width: 1000px;
-    height: 665px;
+    width: 1012px;
+    height: 675px;
+    box-sizing: border-box;
     padding: $main-padding;
-    background-color: $background-and-separator-color;
+    background-color: #ffffffcf;
+    border: 1px solid #d2d2d2;
     font-size: 12px;
     position: relative;
     &-form-active>* {
@@ -115,10 +113,6 @@ body {
 .horizontal-scrolling__wrapper{
     display: flex;
     flex-wrap: nowrap;
-}
-
-.simplebar-scrollbar:before {
-  background: $main-color;
 }
 
 .test-button {

@@ -19,7 +19,8 @@ class Configurator extends Component {
     ConfNumber: 0,
     Configurations: Array(1).fill({}),
     maxConfQuantity: 3,
-    is_form_active: false
+    is_form_active: false,
+    resetConfOnChange: false
   };
 
   deep_ConfigurationsCopy = () => JSON.parse(JSON.stringify(this.state.Configurations));
@@ -315,6 +316,7 @@ class Configurator extends Component {
           Language={this.state.Language}
           QuantityOfConf={this.state.QuantityOfConf}
           Configuration={this.state.Configurations[this.state.ConfNumber]}
+          resetConfOnChange={this.state.resetConfOnChange}
           //Handlers
           setModule={this.setModule}
           CoverHidenHandler={this.coverHidenHandler}
