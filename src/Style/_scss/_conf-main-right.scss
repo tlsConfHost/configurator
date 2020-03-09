@@ -143,17 +143,21 @@
                 }
             }
             &-reset {
-                height: 13px;
-                width: 13px;
-                border: 2px solid $main-color-light1;
+                height: 15px;
+                width: 15px;
+                border: 1px solid $main-color-light1;
                 border-radius: 100px;
                 position: relative;
-                background-color: $main-color-light1;
+                background-color: $sitemap-color;
+                &:hover {
+                    background-color: $setimap-text-color-hover;
+                }
                 &::before, &::after {
                     position: absolute;
                     content: '';
-                    top: 6px;
-                    width: 13px;
+                    top: 7px;
+                    left: 3px;
+                    width: 9px;
                     height: 1.5px;
                     background-color: white;
                 }
@@ -180,13 +184,15 @@
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
-                background-color: $main-color-light1;
+                background-color: $sitemap-color;
                 border-radius: $border-radius-value;
                 border: $border-panel;
                 outline: none;
                 padding: 3px 12px;
+                font-weight: bold;
+                color: white;
                 &:hover {
-                    background-color: $main-color-dark1;
+                    background-color: $setimap-text-color-hover;
                 } 
             }
         }
