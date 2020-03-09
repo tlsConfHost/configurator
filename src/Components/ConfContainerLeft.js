@@ -194,9 +194,7 @@ const ConfContainerLeftMiddle = (props) => {
                 style={{display: (props.QuantityOfConf < props.maxConfQuantity) ? "inline-block" : "none"}}
                 className="addTabs" 
                 onClick={props.AddConfHandler.bind(this)}
-            >
-                +
-            </button>
+            />
         </TabList>
         {[...Array(props.QuantityOfConf).keys()].map((number) => <TabPanel
             className={elementClassName+"-panel"}
