@@ -17,7 +17,7 @@
         animation: fadein 0.2s linear .2s 1 normal both;
     }
     &--hidden {
-        animation: fadeout 0.2s linear 0 1 normal both;
+        animation: fadeout 0.2s linear 0s 1 normal both;
     }
     &-box {
         white-space: nowrap;
