@@ -2,9 +2,20 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    filter: blur(0);
+    visibility: hidden;
+    @keyframes fadein {
+        0% {visibility: hidden; opacity: 0;}
+        100% {visibility: visible; opacity: 1;}
+    }
+    @keyframes fadeout {
+        0% {visibility: visible; opacity: 1;}
+        100% {visibility: hidden; opacity: 0;}
+    }
+    &--visible {
+        animation: fadein 0.2s linear .2s 1 normal both;
+    }
     &--hidden {
-        display: none;
+        animation: fadeout 0.2s linear 0 1 normal both;
     }
     &-box {
         white-space: nowrap;

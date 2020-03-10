@@ -66,7 +66,7 @@ const PrintFormRow = props => {
     }
 
     return (
-        <div className={[elemntClassName, (props.is_form_active ? "" : elemntClassName+"--hidden")].join(" ")}>
+        <div className={[elemntClassName, (props.is_form_active===undefined ? "" : props.is_form_active ? elemntClassName+"--visible" : elemntClassName+"--hidden")].join(" ")}>
             <div className={elemntClassName+"-box"}>
                 <h2 className={elemntClassName+"-box-header"}>Customer Info:</h2>
                 <form className={elemntClassName+"-box-form"}>
@@ -83,8 +83,21 @@ const PrintFormRow = props => {
                         )
                     })}
                 </form>
-                <PrintConfButton get_cutomerInfo={get_cutomerInfo} articlesToPrint_handler={props.articlesToPrint_handler} confNum={props.confNum} className={elemntClassName+"-box-submit"}>Submit</PrintConfButton>
-                <button className={elemntClassName+"-box-cancel"} onClick={() => props.printForm_handler(false)}>Cancel</button>
+                <PrintConfButton
+                    printForm_handler={props.printForm_handler}
+                    get_cutomerInfo={get_cutomerInfo}
+                    articlesToPrint_handler={props.articlesToPrint_handler}
+                    confNum={props.confNum} 
+                    className={elemntClassName+"-box-submit"}
+                >
+                    Submit
+                </PrintConfButton>
+                <button
+                    className={elemntClassName+"-box-cancel"}
+                    onClick={() => props.printForm_handler(false)}
+                >
+                    Cancel
+                </button>
             </div>
         </div>
     )
@@ -109,6 +122,7 @@ class PrintConfButton extends React.Component {
             // setting up new info if all okay
             if (error_list.length === 0) {
                 this.setState({articlesToPrint: articlesToPrint, customerInfo: customerInfo}, () => resolve());
+                this.props.printForm_handler(false)
             } else {
                 const alertMessage = error_list.join("\n")
                 alert(alertMessage)

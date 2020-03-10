@@ -79,10 +79,25 @@ body {
     border: 1px solid $main-color-light3;
     font-size: 12px;
     position: relative;
-    &-form-active>* {
-        filter: blur(5px);
+    
+    @keyframes bluring1 {
+        0%  {filter: blur(0px);}
+        50% {filter: blur(3px);}
+        100% {filter: blur(5px);}
+    }
+    @keyframes bluring2 {
+        0%  {filter: blur(0px);}
+        50% {filter: blur(3px);}
+        100% {filter: blur(5px);}
+    }
+    &_form--hidden>div:nth-last-child(n+2) {
+        animation: bluring1 0.3s linear .2s 1 reverse both;
+    }
+    &_form--active>div:nth-last-child(n+2) {
+        animation: bluring2 0.3s linear 0s 1 normal both;
     }
 }
+
 
 @import 'conf-main-left';
 @import 'conf-main-right';

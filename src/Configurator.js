@@ -19,7 +19,7 @@ class Configurator extends Component {
     ConfNumber: 0,
     Configurations: Array(1).fill({}),
     maxConfQuantity: 3,
-    is_form_active: false,
+    is_form_active: undefined,
     resetConfOnChange: false
   };
 
@@ -189,7 +189,9 @@ class Configurator extends Component {
     const copyOfConfs=this.deep_ConfigurationsCopy();
 
     // Reset support frame in whick module was installed
-    if (copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr !== undefined && copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr.length>0) {
+    if (copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr !== undefined 
+      && copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr.length>0
+    ) {
       const support_frame_index = copyOfConfs[this.state.ConfNumber].Modules[indexOfSlot].support_frame_index
       const support_frame_line = copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.line.match(/[A-Z]{1,}$/)[0]
       copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr[support_frame_index] = supportFrames[support_frame_line][0]
@@ -311,8 +313,16 @@ class Configurator extends Component {
   }
 
   render() {
+
+    const className = ["conf-main"]
+    if (this.state.is_form_active === true) {
+      className.push(className[0]+"_form--active")
+    } else if (this.state.is_form_active===false) {
+      className.push(className[0]+"_form--hidden")
+    }
+
     return (
-      <div className={"conf-main "+(this.state.is_form_active ? "conf-main-form-active" : "")}>
+      <div className={className.join(" ")}>
         <ConfContainerLeft 
           localStrings={localStrings}
           framesForTopMenu={framesForTopMenu}
