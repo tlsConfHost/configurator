@@ -79,6 +79,7 @@ body {
     border: 1px solid $main-color-light3;
     font-size: 12px;
     position: relative;
+    overflow: hidden;
     
     @keyframes bluring1 {
         0%  {filter: blur(0px);}

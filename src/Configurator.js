@@ -314,15 +314,16 @@ class Configurator extends Component {
 
   render() {
 
-    const className = ["conf-main"]
-    if (this.state.is_form_active === true) {
-      className.push(className[0]+"_form--active")
-    } else if (this.state.is_form_active===false) {
-      className.push(className[0]+"_form--hidden")
-    }
+    const className = "conf-main"
 
     return (
-      <div className={className.join(" ")}>
+      <div 
+        className={[
+          className,
+          (this.state.is_form_active===true && className+"_form--active"),
+          (this.state.is_form_active===false && className+"_form--hidden")
+        ].join(" ")}
+      >
         <ConfContainerLeft 
           localStrings={localStrings}
           framesForTopMenu={framesForTopMenu}
