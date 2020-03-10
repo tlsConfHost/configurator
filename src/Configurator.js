@@ -41,8 +41,12 @@ class Configurator extends Component {
       inf.isCoverHiden = true;
       //all signall slots
       let qunatity_of_signal_slots = 0
-      for (const supp_frame of inf.support_frame_arr) {
-        qunatity_of_signal_slots+=supp_frame["frame-width"]
+      if (inf.support_frame_arr.length>0) {
+        for (const supp_frame of inf.support_frame_arr) {
+          qunatity_of_signal_slots+=supp_frame["frame-width"]
+        }
+      } else {
+        qunatity_of_signal_slots = inf["frame-width"]
       }
       inf["signal-slots"] = qunatity_of_signal_slots
     }
@@ -112,7 +116,7 @@ class Configurator extends Component {
     }
 
     const platformСhoiceDesc = copyOfConfs[this.state.ConfNumber].platformСhoiceDesc
-    if (platformСhoiceDesc.location==="WALL") {
+    if (platformСhoiceDesc.support_frame_arr !== undefined && platformСhoiceDesc.support_frame_arr.length>0) {
       const indexInChunk = index - platformСhoiceDesc.support_frame_arr.slice(0, support_frame_index).reduce((sum, supp_frame) => sum+=supp_frame["frame-width"], 0)
       if (indexInChunk+module_inf.slots_takes>platformСhoiceDesc.support_frame_arr[support_frame_index]["frame-width"]) {
         return null
@@ -128,7 +132,7 @@ class Configurator extends Component {
         }
         continue;
       }
-    } else if (platformСhoiceDesc.location==="TABLE") {
+    } else {
       if (modulesList[index+(module_inf.slots_takes-1)]===undefined) {
         return null
       };
@@ -185,7 +189,7 @@ class Configurator extends Component {
     const copyOfConfs=this.deep_ConfigurationsCopy();
 
     // Reset support frame in whick module was installed
-    if (copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr !== undefined) {
+    if (copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr !== undefined && copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr.length>0) {
       const support_frame_index = copyOfConfs[this.state.ConfNumber].Modules[indexOfSlot].support_frame_index
       const support_frame_line = copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.line.match(/[A-Z]{1,}$/)[0]
       copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr[support_frame_index] = supportFrames[support_frame_line][0]
