@@ -9,23 +9,24 @@
   
   @page {
     size: auto;
-    margin: 7mm;
+    margin: 0;
   }
 
 .component-to-print {
+    margin: 10mm;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: repeat(2, min-content) auto min-content;
     position: relative;
     background-color: white;
-    row-gap: 8mm;
+    row-gap: 6mm;
     box-sizing: border-box;
     &-logo {
         width: 40%;
         justify-self: end;
     }
     &-customerInfo {
-        margin: 0 20mm;
+        margin: 0 18mm;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: min-content auto;
@@ -46,6 +47,7 @@
             align-self: center;
         }
         &-header {
+            font-size: 0.9em;
             text-align: center;
             font-weight: bold;
             letter-spacing: 0.7em;
@@ -55,6 +57,7 @@
             border-spacing: 0;
             padding-top: 10px;
             justify-self: start;
+            font-weight: 400;
             & tr td {
                 padding: 0;
                 &:first-child {
@@ -71,17 +74,19 @@
         border-top: 1px solid black;
         grid-auto-rows: min-content;
         box-sizing: border-box;
+        font-size: 0.9em;
+        font-weight: 400;
         p {
             border-bottom: 1px solid rgb(206, 206, 206);
             margin: 0;
-            padding: 0 10px;
+            padding: 4px 10px;
             text-align: center;
         }
         p:nth-child(3) {
             grid-column: 3 / span 2;
         }
         &-header {
-            font-weight: bold;
+            font-weight: 700;
             border-bottom: 1px solid black !important;
             padding: 5px 10px !important;
         }
