@@ -4,8 +4,9 @@
       height: initial !important;
       overflow: initial !important;
       -webkit-print-color-adjust: exact;
+      
     }
-  }
+}
   
 @page {
     size: auto;
@@ -78,7 +79,7 @@
         font-size: 0.9em;
         font-weight: 400;
         p {
-            border-bottom: 1px solid rgb(206, 206, 206);
+            border-bottom: 1px solid rgb(129, 129, 129);
             margin: 0;
             padding: 4px 10px;
             text-align: center;
