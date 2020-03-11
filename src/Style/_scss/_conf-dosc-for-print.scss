@@ -3,8 +3,6 @@
     html, body {
       height: initial !important;
       overflow: initial !important;
-      -webkit-print-color-adjust: exact;
-      
     }
 }
   
@@ -38,7 +36,7 @@
             font-size: 0.6em;
             & span {
                 padding: 0 2px;
-                color: #00b7ff;
+                color: #0095cf;
                 &:first-child {
                     padding-left: 0;
                 }
@@ -115,7 +113,7 @@
                 margin: 0;
             }
             p:first-child {
-                color: #00b7ff;
+                color: #0095cf;
                 font-size: 0.3rem;
                 span{
                     font-size: 0.6rem;
