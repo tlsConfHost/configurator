@@ -1,20 +1,31 @@
+
+@media print {
+    html, body {
+      height: initial !important;
+      overflow: initial !important;
+      -webkit-print-color-adjust: exact;
+    }
+  }
+  
+  @page {
+    size: auto;
+    margin: 7mm;
+  }
+
 .component-to-print {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: repeat(2, min-content) auto min-content;
     position: relative;
     background-color: white;
-    height: 100%;
-    row-gap: 3.5%;
-    padding: 4.5% 3%;
+    row-gap: 8mm;
     box-sizing: border-box;
     &-logo {
         width: 40%;
         justify-self: end;
     }
     &-customerInfo {
-        width: 84%;
-        margin: 0 8%;
+        margin: 0 20mm;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: min-content auto;
@@ -53,8 +64,7 @@
         }
     }
     &-configuration {
-        width: 92%;
-        margin: 0 4%;
+        margin: 0 7mm;
         display: grid;
         grid-template-columns: max-content max-content auto auto max-content;
         border-bottom: 1px solid black;
@@ -63,7 +73,7 @@
         box-sizing: border-box;
         p {
             border-bottom: 1px solid rgb(206, 206, 206);
-            margin: 2px 0;
+            margin: 0;
             padding: 0 10px;
             text-align: center;
         }
@@ -87,8 +97,7 @@
         font-size: 0.6em;
         grid-template-columns: 1fr 1fr 2fr;
         align-self: end;
-        width: 90%;
-        margin: 0 5%;
+        margin: 0 9mm;
         &-col1 {
             border-left: 2px dotted black;
             border-right: 2px dotted black;
