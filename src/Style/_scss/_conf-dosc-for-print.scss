@@ -1,23 +1,28 @@
 .component-to-print {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(2, min-content) auto min-content;
     position: relative;
     background-color: white;
+    height: 100%;
+    row-gap: 3.5%;
+    padding: 4.5% 3%;
+    box-sizing: border-box;
     &-logo {
-        height: 100px;
-        padding: 5px;
-        align-self: flex-end;
+        width: 40%;
+        justify-self: end;
     }
     &-customerInfo {
-        margin: 0 40px;
+        width: 84%;
+        margin: 0 8%;
         display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: auto auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: min-content auto;
+        column-gap: 2em;
         &-tlsContact {
-            align-self: center;
             margin: 0;
+            align-self: center;
+            font-size: 0.6em;
             & span {
                 padding: 0 2px;
                 color: #00b7ff;
@@ -29,12 +34,16 @@
         &-companyName {
             align-self: center;
         }
-        h2 {
-            margin: 10px 20px;
+        &-header {
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 0.7em;
+            margin: 0;
         }
         & table {
             border-spacing: 0;
-
+            padding-top: 10px;
+            justify-self: start;
             & tr td {
                 padding: 0;
                 &:first-child {
@@ -44,12 +53,14 @@
         }
     }
     &-configuration {
-        width: 100%;
+        width: 92%;
+        margin: 0 4%;
         display: grid;
         grid-template-columns: max-content max-content auto auto max-content;
-        border-top: 1px solid black;
         border-bottom: 1px solid black;
-        margin: 20px 0;
+        border-top: 1px solid black;
+        grid-auto-rows: min-content;
+        box-sizing: border-box;
         p {
             border-bottom: 1px solid rgb(206, 206, 206);
             margin: 2px 0;
@@ -62,18 +73,22 @@
         &-header {
             font-weight: bold;
             border-bottom: 1px solid black !important;
+            padding: 5px 10px !important;
         }
         &-desc {
             text-align: left !important;
         }
+        &-footer {
+            grid-column: 1 / span 5;
+        }
     }
     &-contact-info {
-        margin-top: auto;
         display: grid;
         font-size: 0.6em;
         grid-template-columns: 1fr 1fr 2fr;
-        padding: 0 10px;
-        align-self: center;
+        align-self: end;
+        width: 90%;
+        margin: 0 5%;
         &-col1 {
             border-left: 2px dotted black;
             border-right: 2px dotted black;

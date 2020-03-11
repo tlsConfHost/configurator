@@ -51,7 +51,7 @@ class ComponentToPrint extends Component {
                 />
                 <div className={this.className+"-customerInfo"}>
                     <p className={this.className+"-customerInfo-tlsContact"}><span>ECCO GMBH</span><span>&#183;</span>Marie-Curie-Straße 20<span>&#183;</span>D-40721 Hilden</p>
-                    <h2>I N Q U I R Y</h2>
+                    <p className={this.className+"-customerInfo-header"}>INQUIRY</p>
                     <p className={this.className+"-customerInfo-companyName"}>{this.props.customerInfo["Company"]}</p>
                     <table>
                         <tbody>
@@ -89,6 +89,7 @@ class ComponentToPrint extends Component {
                             </Fragment>
                         )
                     })}
+                    <div className={this.className+"-configuration-footer"} />
                 </div>
                 <div className={this.className+"-contact-info"}>
                     <div className={this.className+"-contact-info-col1"}>
