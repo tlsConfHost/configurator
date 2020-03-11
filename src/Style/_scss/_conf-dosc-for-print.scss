@@ -7,13 +7,13 @@
     }
   }
   
-  @page {
+@page {
     size: auto;
-    margin: 0;
-  }
+    margin: 7mm;
+}
 
 .component-to-print {
-    margin: 10mm;
+    height: 100%;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: repeat(2, min-content) auto min-content;
@@ -99,10 +99,10 @@
     }
     &-contact-info {
         display: grid;
-        font-size: 0.6em;
-        grid-template-columns: 1fr 1fr 2fr;
+        font-size: 0.5em;
+        grid-template-columns: 1fr 1fr 1.7fr;
         align-self: end;
-        margin: 0 9mm;
+        margin: 0 10mm;
         &-col1 {
             border-left: 2px dotted black;
             border-right: 2px dotted black;
