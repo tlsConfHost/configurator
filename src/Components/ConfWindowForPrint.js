@@ -41,10 +41,6 @@ class ComponentToPrint extends Component {
         return date
     }
 
-    componentDidMount() {
-        console.log(1)
-    }
-
     render () {
         return (
             <div className={this.className}>

@@ -58,7 +58,7 @@ const PrintFormRow = props => {
     }
 
     const get_cutomerInfo = () => {
-        if (errorForms.size===0 || true) {
+        if (errorForms.size===0) {
             return formsData
         } else {
             return null
