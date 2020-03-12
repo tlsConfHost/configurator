@@ -90,6 +90,7 @@ p {
                         border-top: $head-border-weidht solid black;
                         border-bottom: $head-border-weidht solid black;
                         padding: 5px 10px;
+                        white-space: nowrap;
                         &:nth-child(3) {
                             width: 100%;
                         }
@@ -104,7 +105,7 @@ p {
                         white-space: nowrap;
                         text-align: center;
                         vertical-align: top;
-                        padding: 1mm 2mm;
+                        padding: 1.5mm 3mm;
                         &:nth-child(3), &:nth-child(4) {
                             text-align: left !important;
                         }
