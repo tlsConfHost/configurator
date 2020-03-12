@@ -73,26 +73,34 @@ class ComponentToPrint extends Component {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className={this.className+"-content-configuration"}>
-                                {this.headers.map(header => {
+                            <table className={this.className+"-content-configuration"}>
+                                <thead><tr>{this.headers.map((header, i) => {
+                                    let colSpan = "1"
+                                    if (i === 2) {
+                                        colSpan = "2"
+                                    }
                                     return (
-                                        <p key={header} className={this.className+"-content-configuration-header"}>{header}</p>
+                                        <th
+                                            colSpan={colSpan}
+                                            key={header}
+                                            className={this.className+"-content-configuration-header"}
+                                        >{header}</th>
                                     )
-                                })}
-                                {this.props.configuration.map((obj, i) => {
+                                })}</tr></thead>
+                                <tbody>{this.props.configuration.map((obj, i) => {
                                     const [article, posList] = Object.values(obj)
                                     const module = (priceList[article]) ? priceList[article] : this.lack_module
                                     return (
-                                        <Fragment key={article+"_"+i}>
-                                            <p>{posList.map(pos => pos+1).join(", ")}</p>
-                                            <p>{article}</p>
-                                            <p className={this.className+"-content-configuration-desc"}>{module["type"]}:<br/></p>
-                                            <p className={this.className+"-content-configuration-desc"}>{module["description1"]}<br/>{module["description2"]}</p>
-                                            <p>{posList.length}</p>
-                                        </Fragment>
+                                        <tr key={article+"_"+i}>
+                                            <td>{posList.map(pos => pos+1).join(", ")}</td>
+                                            <td>{article}</td>
+                                            <td>{module["type"]}:</td>
+                                            <td className="desc-col">{module["description1"]}<br/>{module["description2"]}</td>
+                                            <td>{posList.length}</td>
+                                        </tr>
                                     )
-                                })}
-                            </div>
+                                })}</tbody>
+                            </table>
                         </div>
                     </td></tr></tbody>
                     <tfoot><tr><td><div className="footer-height">&nbsp;</div></td></tr></tfoot>

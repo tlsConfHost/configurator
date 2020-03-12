@@ -77,30 +77,42 @@ p {
             }
         }
         &-configuration {
-            margin: 0 7mm;
-            display: grid;
-            grid-template-columns: max-content max-content auto auto max-content;
-            border-top: $head-border-weidht solid black;
-            grid-auto-rows: min-content;
             font-size: 0.9em;
             font-weight: 400;
-            p {
-                border-top: 1px solid rgb(129, 129, 129);
-                margin: 0;
-                text-align: center;
-                padding: 0.5mm 2mm;
+            margin: 0 7mm;
+            border-spacing: 0;
+            width: calc(100% - 14mm);
+            & thead {
+                & tr {
+                    page-break-inside: avoid !important;
+                    & th {
+                        font-weight: 700;
+                        border-top: $head-border-weidht solid black;
+                        border-bottom: $head-border-weidht solid black;
+                        padding: 5px 10px;
+                        &:nth-child(3) {
+                            width: 100%;
+                        }
+                    }
+                }
             }
-            p:nth-child(3) {
-                grid-column: 3 / span 2;
-            }
-            &-header {
-                border-top: none !important;
-                font-weight: 700;
-                border-bottom: $head-border-weidht solid black !important;
-                padding: 5px 10px !important;
-            }
-            &-desc {
-                text-align: left !important;
+            & tbody {
+                & tr {
+                    page-break-inside: avoid !important;
+                    & td {
+                        border-bottom: 1px solid rgb(129, 129, 129);
+                        white-space: nowrap;
+                        text-align: center;
+                        vertical-align: top;
+                        padding: 0.5mm 2mm;
+                        &:nth-child(3), &:nth-child(4) {
+                            text-align: left !important;
+                        }
+                        &:nth-child(4) {
+                            white-space: normal !important;
+                        }
+                    }
+                }
             }
         }
     }
