@@ -29,10 +29,18 @@ const framesForTopMenu = {
 			{ 'article': '8639675-1400', 'support-frame_amount': 0, 'offset-px': -31, 'frame-width': 3 }, 
 			{ 'article': '8639675-1401', 'support-frame_amount': 0, 'offset-px': -30, 'frame-width': 4 }
 		],
-		"Standart Line IPL" : [
+		"Standard Line IPL" : [
 			{ 'article': '8659300' },
 			{ 'article': '8659301' },
-			{ 'article': '8659302' },
+			{ 'article': '8659302' }
+		],
+		"Standard Line WP" : [
+			{ 'article': '8639904' },
+			{ 'article': '8639894' },
+			{ 'article': '8639919' },
+			{ 'article': '8639945' },
+			{ 'article': '8639915' },
+			{ 'article': '8369917' }
 		]
 	},
 	"TABLE" : {

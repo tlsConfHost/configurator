@@ -141,9 +141,9 @@ const PremiumLineIPL = (props) => {
     )
 }
 
-const StandartLineIPL = (props) => {
+const StandardLineIPL = (props) => {
     const platformСhoiceDesc = props.Configuration.platformСhoiceDesc
-    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-standart-line-ipl"
+    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-standard-line-ipl"
     
     return (
         <div className={componentClassName}>
@@ -185,6 +185,21 @@ const UniversalLineWP = (props) => {
     )
 }
 
+const StandardLineWP = (props) => {
+    const platformСhoiceDesc = props.Configuration.platformСhoiceDesc
+    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-standard-line-ipl"
+    
+    return (
+        <div className={componentClassName}>
+            <img
+                className={componentClassName+"-frame-img"}
+                src={platformСhoiceDesc.img}
+                alt=""
+            />
+        </div>
+    )
+}
+
 const ConfLayOutFloor = (props) => {
     return (
         <div className="conf-main-left-middle-container_l1-layout-floor">
@@ -193,4 +208,4 @@ const ConfLayOutFloor = (props) => {
     )
 }
 
-export {Table, PremiumLineIPL, StandartLineIPL, UniversalLineWP , ConfLayOutFloor};
+export {Table, PremiumLineIPL, StandardLineIPL, UniversalLineWP, StandardLineWP, ConfLayOutFloor};

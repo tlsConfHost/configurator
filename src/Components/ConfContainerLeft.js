@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {Table, ConfLayOutFloor, PremiumLineIPL, StandartLineIPL, UniversalLineWP} from './ConfLayOut';
+import {Table, ConfLayOutFloor, PremiumLineIPL, StandardLineIPL, UniversalLineWP, StandardLineWP} from './ConfLayOut';
 import priceList from '../Data/pricelistinfo';
 
 const ConfContainerLeft = (props) => {
@@ -230,13 +230,18 @@ const RepresentationOfConf = (props) => {
                 Configuration={props.Configuration}
                 setModule={props.setModule}
             />
-        : (props.Configuration.platformСhoiceDesc.line === "Standart Line IPL") ? 
-            <StandartLineIPL
+        : (props.Configuration.platformСhoiceDesc.line === "Standard Line IPL") ? 
+            <StandardLineIPL
                 Configuration={props.Configuration}
                 setModule={props.setModule}
             />
         : (props.Configuration.platformСhoiceDesc.line === "Universal Line WP") ? 
             <UniversalLineWP 
+                Configuration={props.Configuration}
+                setModule={props.setModule}
+            />
+        : (props.Configuration.platformСhoiceDesc.line === "Standard Line WP") ? 
+            <StandardLineWP 
                 Configuration={props.Configuration}
                 setModule={props.setModule}
             />
