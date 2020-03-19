@@ -217,18 +217,18 @@ const supportFrames = {
 		{
 			"article": "8659213",
 			"support-modules-type": ["Blind slots", "Video", "Video-Audio", "Audio", "Control", "Optic"],
-			"frame-width" : 3,
+			"frame-width" : 3
 		}, {
 			"article": "8639209",
 			"support-modules-type": ["Power Sockets"],
-			"frame-width" : 1,
+			"frame-width" : 1
 		}
 	],
 	"WP": [
 		{
 			"article": "8639670",
 			"support-modules-type": ["Blind slots", "Video", "Video-Audio", "Audio", "Control", "Optic"],
-			"frame-width" : 2,
+			"frame-width" : 2
 		}
 	]
 }
