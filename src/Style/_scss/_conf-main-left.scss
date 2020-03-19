@@ -128,7 +128,7 @@
                     z-index: 1;
                 }
             }
-            &-layout-wall-ipl {
+            &-layout-wall-premium-line-ipl {
                 height: 170px;
                 display: flex;
                 box-sizing: border-box;
@@ -241,7 +241,13 @@
                     background-color: $background-and-separator-color;
                 }
             }
-            &-layout-wall-wp {
+            &-layout-wall-standart-line-ipl {
+                height: 165px;
+                &-frame-img {
+                    height: 100%
+                }
+            }
+            &-layout-wall-universal-line-wp {
                 position: relative;
                 height: 165px;
                 &-frame-img {
@@ -267,6 +273,7 @@
                     }
                 }
             }
+
         }
     }
     &-bottom {

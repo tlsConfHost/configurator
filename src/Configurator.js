@@ -37,7 +37,7 @@ class Configurator extends Component {
     } else if (inf.location==="WALL") {
       // fill support frames
       const support_frame_line = line.match(/[A-Z]{1,}$/)[0]
-      inf.support_frame_arr = Array(inf["support-frame_amount"]).fill(supportFrames[support_frame_line][0])
+      inf.support_frame_arr = Array(inf["support-frame_amount"] || 0).fill(supportFrames[support_frame_line][0])
       inf.isCoverHiden = true;
       //all signall slots
       let qunatity_of_signal_slots = 0
@@ -46,7 +46,7 @@ class Configurator extends Component {
           qunatity_of_signal_slots+=supp_frame["frame-width"]
         }
       } else {
-        qunatity_of_signal_slots = inf["frame-width"]
+        qunatity_of_signal_slots = inf["frame-width"] || 0
       }
       inf["signal-slots"] = qunatity_of_signal_slots
     }

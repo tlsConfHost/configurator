@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {ConfLayOutTable, ConfLayOutFloor, ConfLayOutWallIPL,ConfLayOutWallWP} from './ConfLayOut';
+import {Table, ConfLayOutFloor, PremiumLineIPL, StandartLineIPL, UniversalLineWP} from './ConfLayOut';
 import priceList from '../Data/pricelistinfo';
 
 const ConfContainerLeft = (props) => {
@@ -13,6 +13,7 @@ const ConfContainerLeft = (props) => {
             onClick={props.platformHandler}
             reseting={props.resetConfOnChange}
             frameResetHandler={props.frameResetHandler}
+            draggable={false}
         />
         <ConfContainerLeftInstruction
             Language={props.Language}
@@ -34,7 +35,7 @@ const ConfContainerLeft = (props) => {
             pathArray={[]}
             level={0}
             dataObj={props.modulesForBottomMenu}
-            draggable='true'
+            draggable={true && Boolean(props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc['signal-slots'])}
             line={props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc.line.match(/[A-Z0-9]{1,}$/)}
             location={props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc.location}
         />
@@ -54,13 +55,13 @@ const TopAndBottomMenu = props => {
             (
                 (!props.line)
                 ||
-                (inf.match(regex)[0]===props.line[0])
+                (inf.match(regex)[0] === props.line[0])
                 ||
-                (/^[\d]{1,}/.test(props.line[0]) && inf.match(regex)[0]==="IPL")
+                (/^[\d]{1,}/.test(props.line[0]) && inf.match(regex)[0] === "IPL")
             ) && (
-                props.location!=="TABLE"
+                (props.location !== "TABLE")
                 ||
-                inf!=="Power Sockets"
+                (inf !== "Power Sockets")
             )
         )
         return bool
@@ -141,6 +142,7 @@ const CardMenu = props => {
                             }}
                             onDragStart={e => props.draggable && dragStart(e, [module, ...props.pathArray])}
                             onDragOver={dragOver}
+                            draggable={props.draggable}
                         />
                         <CardDesc
                             className={className+"-card-desc"}
@@ -219,17 +221,22 @@ const RepresentationOfConf = (props) => {
             CoverHidenHandler={props.CoverHidenHandler}
         />
         {(props.Configuration.platformСhoiceDesc.location === "TABLE") ? 
-            <ConfLayOutTable
+            <Table
                 Configuration={props.Configuration}
                 setModule={props.setModule}
             /> 
         : (props.Configuration.platformСhoiceDesc.line === "Premium Line IPL") ? 
-            <ConfLayOutWallIPL
+            <PremiumLineIPL
+                Configuration={props.Configuration}
+                setModule={props.setModule}
+            />
+        : (props.Configuration.platformСhoiceDesc.line === "Standart Line IPL") ? 
+            <StandartLineIPL
                 Configuration={props.Configuration}
                 setModule={props.setModule}
             />
         : (props.Configuration.platformСhoiceDesc.line === "Universal Line WP") ? 
-            <ConfLayOutWallWP 
+            <UniversalLineWP 
                 Configuration={props.Configuration}
                 setModule={props.setModule}
             />
@@ -251,7 +258,7 @@ const ConfDesc = (props) => {
             <ul>
                 <li>{props.platformСhoiceDesc.line_desc}</li>
                 <li>Type: Special</li>
-                {(props.platformСhoiceDesc.location==="WALL") && <li>Support frame (x{props.platformСhoiceDesc["support-frame_amount"]})</li>}
+                {(props.platformСhoiceDesc["support-frame_amount"]) ? <li>Support frame (x{props.platformСhoiceDesc["support-frame_amount"]})</li> : ''}
                 {(props.platformСhoiceDesc.line==="Premium Line IPL") && <li>
                     Hide cover frame:
                     <button 

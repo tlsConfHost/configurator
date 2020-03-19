@@ -26,8 +26,13 @@ const framesForTopMenu = {
 			{ 'article': '8639675-1150', 'support-frame_amount': 1, 'offset-px': 0   }, 
 			{ 'article': '8639675-1159', 'support-frame_amount': 1, 'offset-px': 44  }, 
 			{ 'article': '8639675-1163', 'support-frame_amount': 1, 'offset-px': 49  }, 
-			{ 'article': '8639675-1400', 'support-frame_amount': 0, 'offset-px': -31, "frame-width": 3 }, 
-			{ 'article': '8639675-1401', 'support-frame_amount': 0, 'offset-px': -30, "frame-width": 4 }
+			{ 'article': '8639675-1400', 'support-frame_amount': 0, 'offset-px': -31, 'frame-width': 3 }, 
+			{ 'article': '8639675-1401', 'support-frame_amount': 0, 'offset-px': -30, 'frame-width': 4 }
+		],
+		"Standart Line IPL" : [
+			{ 'article': '8659300' },
+			{ 'article': '8659301' },
+			{ 'article': '8659302' },
 		]
 	},
 	"TABLE" : {

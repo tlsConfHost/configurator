@@ -52,8 +52,10 @@ const ConferenceControlDoubleFrame = (props) => {
     />
 }
 
-const ConfLayOutTable = (props) => {
+const Table = (props) => {
     const platformСhoiceDesc = props.Configuration.platformСhoiceDesc;
+    const componentClassName = "conf-main-left-middle-container_l1-layout-table"
+
     const layOut_content = () => {
         const powerSokets = Array(platformСhoiceDesc["power-sockets"]).fill().map((_, index) => <PowerSocket 
             Configuration={props.Configuration} 
@@ -92,7 +94,6 @@ const ConfLayOutTable = (props) => {
         powerSokets.splice(pos, 0, ...conferenceControlDoubleFrame, ...conferenceControl, signalSlots);
         return (powerSokets);
     }
-    const componentClassName = "conf-main-left-middle-container_l1-layout-table"
     return (
         <div className={componentClassName}>
             <div className={componentClassName+"-top"} />
@@ -104,9 +105,9 @@ const ConfLayOutTable = (props) => {
     );
 }
 
-const ConfLayOutWallIPL = (props) => {
+const PremiumLineIPL = (props) => {
     const platformСhoiceDesc = props.Configuration.platformСhoiceDesc
-    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-ipl"
+    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-premium-line-ipl"
     const isCoverHiden = (className) => className+" "+((platformСhoiceDesc.isCoverHiden) ? className+"--hiddenCover" : "");
     
     return (
@@ -140,9 +141,24 @@ const ConfLayOutWallIPL = (props) => {
     )
 }
 
-const ConfLayOutWallWP = (props) => {
+const StandartLineIPL = (props) => {
     const platformСhoiceDesc = props.Configuration.platformСhoiceDesc
-    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-wp"
+    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-standart-line-ipl"
+    
+    return (
+        <div className={componentClassName}>
+            <img
+                className={componentClassName+"-frame-img"}
+                src={platformСhoiceDesc.img}
+                alt=""
+            />
+        </div>
+    )
+}
+
+const UniversalLineWP = (props) => {
+    const platformСhoiceDesc = props.Configuration.platformСhoiceDesc
+    const componentClassName = "conf-main-left-middle-container_l1-layout-wall-universal-line-wp"
 
     const layOut_height = {height: 165+platformСhoiceDesc["offset-px"]+"px"}
     
@@ -177,4 +193,4 @@ const ConfLayOutFloor = (props) => {
     )
 }
 
-export {ConfLayOutTable, ConfLayOutWallIPL, ConfLayOutWallWP , ConfLayOutFloor};
+export {Table, PremiumLineIPL, StandartLineIPL, UniversalLineWP , ConfLayOutFloor};
