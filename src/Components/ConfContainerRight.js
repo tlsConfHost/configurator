@@ -1,6 +1,5 @@
 import React, { useState , useEffect, Fragment} from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import priceList from '../Data/pricelistinfo';
 
 const ConfContainerRight = (props) => {
     return (
@@ -17,6 +16,7 @@ const ConfContainerRight = (props) => {
               frameResetHandler={props.frameResetHandler}
               powerSocketMenuHandler={props.powerSocketMenuHandler}
               printForm_handler={props.printForm_handler}
+              pricelistinfo={props.pricelistinfo}
             />
         </div>
     );
@@ -105,6 +105,7 @@ const ConfContainerRightBottom = (props) => {
                 ModuleResetHandler={props.ModuleResetHandler}
                 frameResetHandler={props.frameResetHandler}
                 powerSocketMenuHandler={props.powerSocketMenuHandler}
+                pricelistinfo={props.pricelistinfo}
               /> ,
               <div key={confNumber+"wrapper"} className="conf-main-right-bottom_l1-print-conf-list">
                 <button
@@ -204,7 +205,7 @@ const ConfList = props => {
           confNumber={props.confNumber}
           key={frame+index}
         >
-          {priceList[frame.article].description1} {priceList[frame.article].description2 && `(${priceList[frame.article].description2})`}
+          {props.pricelistinfo[frame.article].description1} {props.pricelistinfo[frame.article].description2 && `(${props.pricelistinfo[frame.article].description2})`}
         </ConfDescLine>) : null}
         {(platformСhoiceDesc["power-sockets"]) ? <ConfDescLine
           elementClassName={elementClassName}

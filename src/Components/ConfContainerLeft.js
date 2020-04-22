@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {Table, ConfLayOutFloor, PremiumLineIPL, StandardLineIPL, UniversalLineWP, StandardLineWP} from './ConfLayOut';
-import priceList from '../Data/pricelistinfo';
 
 const ConfContainerLeft = (props) => {
     return <div className="conf-main-left">
@@ -14,6 +13,7 @@ const ConfContainerLeft = (props) => {
             reseting={props.resetConfOnChange}
             frameResetHandler={props.frameResetHandler}
             draggable={false}
+            pricelistinfo={props.pricelistinfo}
         />
         <ConfContainerLeftInstruction
             Language={props.Language}
@@ -38,6 +38,7 @@ const ConfContainerLeft = (props) => {
             draggable={true && Boolean(props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc['signal-slots'])}
             line={props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc.line.match(/[A-Z0-9]{1,}$/)}
             location={props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc.location}
+            pricelistinfo={props.pricelistinfo}
         />
         <ConfContainerLeftInstruction
             Language={props.Language}
@@ -94,6 +95,7 @@ const TopAndBottomMenu = props => {
                             frameResetHandler={props.frameResetHandler}
                             location={props.location}
                             reseting={props.reseting}
+                            pricelistinfo={props.pricelistinfo}
                         /> : <CardMenu 
                             pathArray = {[...props.pathArray, inf]}
                             level = {props.level+1}
@@ -101,6 +103,7 @@ const TopAndBottomMenu = props => {
                             className={props.className}
                             onClick={props.onClick}
                             draggable={props.draggable}
+                            pricelistinfo={props.pricelistinfo}
                         />
                     }
                 </TabPanel>)}
@@ -148,7 +151,7 @@ const CardMenu = props => {
                             className={className+"-card-desc"}
                             isLeftPart={(i<module_list.length/2)}
                         >
-                            {priceList[module.article] && priceList[module.article].description1}
+                            {props.pricelistinfo[module.article] && props.pricelistinfo[module.article].description1}
                         </CardDesc>
                     </div>
                 )

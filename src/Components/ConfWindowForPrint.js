@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import priceList from '../Data/pricelistinfo';
 
 class ComponentToPrint extends Component {
 
@@ -89,7 +88,7 @@ class ComponentToPrint extends Component {
                                 })}</tr></thead>
                                 <tbody>{this.props.configuration.map((obj, i) => {
                                     const [article, posList] = Object.values(obj)
-                                    const module = (priceList[article]) ? priceList[article] : this.lack_module
+                                    const module = (this.props.pricelistinfo[article]) ? this.props.pricelistinfo[article] : this.lack_module
                                     return (
                                         <tr key={article+"_"+i}>
                                             <td>{posList.map(pos => pos+1).join(", ")}</td>

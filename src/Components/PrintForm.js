@@ -19,7 +19,7 @@ const FormRow = props => {
     )
 }
 
-const PrintFormRow = props => {
+const PrintForm = props => {
     const elemntClassName = "print-form"
 
     const forms_label = {
@@ -89,6 +89,7 @@ const PrintFormRow = props => {
                     articlesToPrint_handler={props.articlesToPrint_handler}
                     confNum={props.confNum} 
                     className={elemntClassName+"-box-submit"}
+                    pricelistinfo={props.pricelistinfo}
                 >
                     Submit
                 </PrintConfButton>
@@ -141,11 +142,16 @@ class PrintConfButton extends React.Component {
                 onBeforeGetContent={this.handleBeforeGetContent}
               />
               <div style={{display: 'none'}}>
-                {(this.state.articlesToPrint !== null && this.state.customerInfo !== null) && <ComponentToPrint customerInfo={this.state.customerInfo} configuration={this.state.articlesToPrint} ref={el => (this.componentRef = el)} />}
+                {(this.state.articlesToPrint !== null && this.state.customerInfo !== null) && <ComponentToPrint
+                    pricelistinfo={this.props.pricelistinfo} 
+                    customerInfo={this.state.customerInfo} 
+                    configuration={this.state.articlesToPrint} 
+                    ref={el => (this.componentRef = el)} 
+                />}
               </div>
             </Fragment>
         );
     }
   }
 
-export default PrintFormRow;
+export default PrintForm;

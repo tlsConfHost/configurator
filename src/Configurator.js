@@ -5,7 +5,6 @@ import PrintForm from './Components/PrintForm'
 
 //Data
 import localStrings from './Data/strings';
-import priceList from './Data/pricelistinfo';
 
 //CSS
 import './Style/configurator.css';
@@ -20,13 +19,17 @@ class Configurator extends Component {
     maxConfQuantity: 3,
     is_form_active: undefined,
     resetConfOnChange: false,
-    data: null
+    data: null,
+    pricelistinfo: null
   };
 
   componentDidMount() {
     fetch('data/data.json')
       .then(response => response.json())
-      .then(data => this.setState({ data: data.data }));
+      .then(data => this.setState({ data: data }));
+    fetch('data/pricelistinfo.json')
+      .then(response => response.json())
+      .then(pricelistinfo => this.setState({ pricelistinfo: pricelistinfo }));
   }
 
   deep_ConfigurationsCopy = () => JSON.parse(JSON.stringify(this.state.Configurations));
@@ -37,7 +40,7 @@ class Configurator extends Component {
       // img for right top menu
       inf.img = "img/" + inf.location.toLowerCase() + "/" + inf.line.toLowerCase() + "/"+ inf.line.toLowerCase() + "img.png";
       // right top menu
-      inf.frame_sub_type = this.state.data.supportFrames[inf.location][inf.line];
+      inf.frame_sub_type = this.state.data.subModulesType[inf.location][inf.line];
       inf.frame_sub_type_desc = Object.keys(inf.frame_sub_type)[0];
       inf.frame_sub_type_article = inf.frame_sub_type[inf.frame_sub_type_desc];
     } else if (inf.location==="WALL") {
@@ -56,10 +59,10 @@ class Configurator extends Component {
       }
       inf["signal-slots"] = qunatity_of_signal_slots
     }
-    inf.line_desc = priceList[frameInf.article].description1;
-    inf.frame_desc = priceList[frameInf.article].description2;
+    inf.line_desc = this.state.pricelistinfo[frameInf.article].description1;
+    inf.frame_desc = this.state.pricelistinfo[frameInf.article].description2;
     if (inf["power-sockets"] > 0) {
-      inf.powerSocketList = this.state.data.PowerSocket.reduce((obj, article) => (priceList[article] ? {...obj, [priceList[article].description1]: article} : obj), {});
+      inf.powerSocketList = this.state.data.PowerSocket.reduce((obj, article) => (this.state.pricelistinfo[article] ? {...obj, [this.state.pricelistinfo[article].description1]: article} : obj), {});
       inf.powerSocketDesc = Object.keys(inf.powerSocketList)[0]
       inf.powerSocketArticle = inf.powerSocketList[inf.powerSocketDesc];
     }
@@ -81,10 +84,10 @@ class Configurator extends Component {
     module_inf.module_series = module_series
     module_inf.module_type = module_type
 
-    const moduleData_priceList = priceList[module_inf.article]
+    const moduleData_priceList = this.state.pricelistinfo[module_inf.article]
     if (moduleData_priceList) {
       module_inf.desc = moduleData_priceList.description1 + (
-        moduleData_priceList.description2 && `(${moduleData_priceList.description2})`
+        (moduleData_priceList.description2 !== undefined) ? `(${moduleData_priceList.description2})` : ""
       )
     }
 
@@ -93,9 +96,9 @@ class Configurator extends Component {
     const getWeight = article => {
       if (module_inf.module_type === "Power Sockets") {
         return 3
-      } else if (priceList[article]) {
+      } else if (this.state.pricelistinfo[article]) {
         const slotsWidth_rexEx = /[0-9] slots* width/
-        const module_module_info = Object.values(priceList[article])
+        const module_module_info = Object.values(this.state.pricelistinfo[article])
         const slots_takes = module_module_info.map(str => str.match(slotsWidth_rexEx) && str.match(slotsWidth_rexEx)[0]).filter(Boolean)[0]
         return slots_takes && parseInt(slots_takes.replace(/\D+/, ""))
       } else {
@@ -173,7 +176,7 @@ class Configurator extends Component {
 
   moduleMenuHandler = (article, index) => {
     const copyOfConfs=this.deep_ConfigurationsCopy();
-    const desc = priceList[article].description1 + (priceList[article].description2 && `(${priceList[article].description2})`)
+    const desc = this.state.pricelistinfo[article].description1 + (this.state.pricelistinfo[article].description2 && `(${this.state.pricelistinfo[article].description2})`)
     const newInf={
       article: article,
       desc: desc,
@@ -233,7 +236,7 @@ class Configurator extends Component {
   }
 
   powerSocketMenuHandler = (article) => {
-    const desc = priceList[article].description1
+    const desc = this.state.pricelistinfo[article].description1
     const newInf = {
       powerSocketDesc: desc,
       powerSocketArticle: article
@@ -322,7 +325,7 @@ class Configurator extends Component {
 
     const className = "conf-main"
 
-    if (this.state.data) {
+    if (this.state.data && this.state.pricelistinfo) {
       return (
         <div 
           className={[
@@ -339,6 +342,7 @@ class Configurator extends Component {
             QuantityOfConf={this.state.QuantityOfConf}
             Configuration={this.state.Configurations[this.state.ConfNumber]}
             resetConfOnChange={this.state.resetConfOnChange}
+            pricelistinfo={this.state.pricelistinfo}
             //Handlers
             setModule={this.setModule}
             CoverHidenHandler={this.coverHidenHandler}
@@ -352,6 +356,7 @@ class Configurator extends Component {
             ConfNumber={this.state.ConfNumber}
             Configurations={this.state.Configurations}
             QuantityOfConf={this.state.QuantityOfConf}
+            pricelistinfo={this.state.pricelistinfo}
             //Handlers
             ModuleMenuHandler={this.moduleMenuHandler}
             frame_sub_typeHandler={this.frame_sub_typeHandler}
@@ -360,7 +365,7 @@ class Configurator extends Component {
             powerSocketMenuHandler={this.powerSocketMenuHandler}
             printForm_handler={this.printForm_handler}
           />
-          <PrintForm confNum={this.state.right_ConfNumber} articlesToPrint_handler={this.articlesToPrint_handler} is_form_active={this.state.is_form_active} printForm_handler={this.printForm_handler} />
+          <PrintForm pricelistinfo={this.state.pricelistinfo} confNum={this.state.right_ConfNumber} articlesToPrint_handler={this.articlesToPrint_handler} is_form_active={this.state.is_form_active} printForm_handler={this.printForm_handler} />
         </div>
       );
     } else {
