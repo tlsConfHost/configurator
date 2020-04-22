@@ -4,7 +4,6 @@ import ConfContainerRight from './Components/ConfContainerRight';
 import PrintForm from './Components/PrintForm'
 
 //Data
-import {supportFrames, subModulesType, framesForTopMenu, modulesForBottomMenu, PowerSocket} from './Data/data';
 import localStrings from './Data/strings';
 import priceList from './Data/pricelistinfo';
 
@@ -20,8 +19,15 @@ class Configurator extends Component {
     Configurations: Array(1).fill({}),
     maxConfQuantity: 3,
     is_form_active: undefined,
-    resetConfOnChange: false
+    resetConfOnChange: false,
+    data: null
   };
+
+  componentDidMount() {
+    fetch('/data/data.json')
+      .then(response => response.json())
+      .then(data => this.setState({ data: data.data }));
+  }
 
   deep_ConfigurationsCopy = () => JSON.parse(JSON.stringify(this.state.Configurations));
 
@@ -31,13 +37,13 @@ class Configurator extends Component {
       // img for right top menu
       inf.img = "img/" + inf.location.toLowerCase() + "/" + inf.line.toLowerCase() + "/"+ inf.line.toLowerCase() + "img.png";
       // right top menu
-      inf.frame_sub_type = subModulesType[inf.location][inf.line];
+      inf.frame_sub_type = this.state.data.supportFrames[inf.location][inf.line];
       inf.frame_sub_type_desc = Object.keys(inf.frame_sub_type)[0];
       inf.frame_sub_type_article = inf.frame_sub_type[inf.frame_sub_type_desc];
     } else if (inf.location==="WALL") {
       // fill support frames
       const support_frame_line = line.match(/[A-Z]{1,}$/)[0]
-      inf.support_frame_arr = Array(inf["support-frame_amount"] || 0).fill(supportFrames[support_frame_line][0])
+      inf.support_frame_arr = Array(inf["support-frame_amount"] || 0).fill(this.state.data.supportFrames[support_frame_line][0])
       inf.isCoverHiden = true;
       //all signall slots
       let qunatity_of_signal_slots = 0
@@ -53,7 +59,7 @@ class Configurator extends Component {
     inf.line_desc = priceList[frameInf.article].description1;
     inf.frame_desc = priceList[frameInf.article].description2;
     if (inf["power-sockets"] > 0) {
-      inf.powerSocketList = PowerSocket.reduce((obj, article) => (priceList[article] ? {...obj, [priceList[article].description1]: article} : obj), {});
+      inf.powerSocketList = this.state.data.PowerSocket.reduce((obj, article) => (priceList[article] ? {...obj, [priceList[article].description1]: article} : obj), {});
       inf.powerSocketDesc = Object.keys(inf.powerSocketList)[0]
       inf.powerSocketArticle = inf.powerSocketList[inf.powerSocketDesc];
     }
@@ -125,7 +131,7 @@ class Configurator extends Component {
       module_inf.support_frame_index = support_frame_index
 
       const support_frame_line = module_inf.module_series.match(/[A-Z]{1,}$/)[0]
-      for (const supp_frame of supportFrames[support_frame_line]) {
+      for (const supp_frame of this.state.data.supportFrames[support_frame_line]) {
         if (supp_frame["support-modules-type"].includes(module_inf.module_type)) {
           platformСhoiceDesc.support_frame_arr[module_inf.support_frame_index] = supp_frame;
           break;
@@ -194,7 +200,7 @@ class Configurator extends Component {
     ) {
       const support_frame_index = copyOfConfs[this.state.ConfNumber].Modules[indexOfSlot].support_frame_index
       const support_frame_line = copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.line.match(/[A-Z]{1,}$/)[0]
-      copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr[support_frame_index] = supportFrames[support_frame_line][0]
+      copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.support_frame_arr[support_frame_index] = this.state.data.supportFrames[support_frame_line][0]
     };
 
     for (let i = 1; i<copyOfConfs[confNumber].Modules[indexOfSlot].slots_takes; i++) {
@@ -316,46 +322,48 @@ class Configurator extends Component {
 
     const className = "conf-main"
 
-    return (
-      <div 
-        className={[
-          className,
-          (this.state.is_form_active===true && className+"_form--active"),
-          (this.state.is_form_active===false && className+"_form--hidden")
-        ].join(" ")}
-      >
-        <ConfContainerLeft 
-          localStrings={localStrings}
-          framesForTopMenu={framesForTopMenu}
-          modulesForBottomMenu={modulesForBottomMenu}
-          Language={this.state.Language}
-          QuantityOfConf={this.state.QuantityOfConf}
-          Configuration={this.state.Configurations[this.state.ConfNumber]}
-          resetConfOnChange={this.state.resetConfOnChange}
-          //Handlers
-          setModule={this.setModule}
-          CoverHidenHandler={this.coverHidenHandler}
-          platformHandler={this.platformHandler}
-          ConfNumberHandler={this.confNumberHandler}
-          AddConfHandler={this.addConfHandler}
-          maxConfQuantity={this.state.maxConfQuantity}
-          frameResetHandler={this.frameResetHandler}
-        />
-        <ConfContainerRight
-          ConfNumber={this.state.ConfNumber}
-          Configurations={this.state.Configurations}
-          QuantityOfConf={this.state.QuantityOfConf}
-          //Handlers
-          ModuleMenuHandler={this.moduleMenuHandler}
-          frame_sub_typeHandler={this.frame_sub_typeHandler}
-          ModuleResetHandler={this.moduleResetHandler}
-          frameResetHandler={this.frameResetHandler}
-          powerSocketMenuHandler={this.powerSocketMenuHandler}
-          printForm_handler={this.printForm_handler}
-        />
-        <PrintForm confNum={this.state.right_ConfNumber} articlesToPrint_handler={this.articlesToPrint_handler} is_form_active={this.state.is_form_active} printForm_handler={this.printForm_handler} />
-      </div>
-    );
+    if (this.state.data) {
+      return (
+        <div 
+          className={[
+            className,
+            (this.state.is_form_active===true && className+"_form--active"),
+            (this.state.is_form_active===false && className+"_form--hidden")
+          ].join(" ")}
+        >
+          <ConfContainerLeft 
+            localStrings={localStrings}
+            framesForTopMenu={this.state.data.framesForTopMenu}
+            modulesForBottomMenu={this.state.data.modulesForBottomMenu}
+            Language={this.state.Language}
+            QuantityOfConf={this.state.QuantityOfConf}
+            Configuration={this.state.Configurations[this.state.ConfNumber]}
+            resetConfOnChange={this.state.resetConfOnChange}
+            //Handlers
+            setModule={this.setModule}
+            CoverHidenHandler={this.coverHidenHandler}
+            platformHandler={this.platformHandler}
+            ConfNumberHandler={this.confNumberHandler}
+            AddConfHandler={this.addConfHandler}
+            maxConfQuantity={this.state.maxConfQuantity}
+            frameResetHandler={this.frameResetHandler}
+          />
+          <ConfContainerRight
+            ConfNumber={this.state.ConfNumber}
+            Configurations={this.state.Configurations}
+            QuantityOfConf={this.state.QuantityOfConf}
+            //Handlers
+            ModuleMenuHandler={this.moduleMenuHandler}
+            frame_sub_typeHandler={this.frame_sub_typeHandler}
+            ModuleResetHandler={this.moduleResetHandler}
+            frameResetHandler={this.frameResetHandler}
+            powerSocketMenuHandler={this.powerSocketMenuHandler}
+            printForm_handler={this.printForm_handler}
+          />
+          <PrintForm confNum={this.state.right_ConfNumber} articlesToPrint_handler={this.articlesToPrint_handler} is_form_active={this.state.is_form_active} printForm_handler={this.printForm_handler} />
+        </div>
+      );
+    }
   }
 }
 
