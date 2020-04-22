@@ -24,7 +24,7 @@ class Configurator extends Component {
   };
 
   componentDidMount() {
-    fetch('/data/data.json')
+    fetch('data/data.json')
       .then(response => response.json())
       .then(data => this.setState({ data: data.data }));
   }
@@ -363,8 +363,10 @@ class Configurator extends Component {
           <PrintForm confNum={this.state.right_ConfNumber} articlesToPrint_handler={this.articlesToPrint_handler} is_form_active={this.state.is_form_active} printForm_handler={this.printForm_handler} />
         </div>
       );
+    } else {
+      return <p>Loading</p>
     }
-  }
+  } 
 }
 
 export default Configurator;
