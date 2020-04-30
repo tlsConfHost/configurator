@@ -97,8 +97,7 @@
 				{ "solder-terminal": "8639294", "40 cm cable": "8639295", "gender changer": "8639296" },
 				{ "solder-terminal": "8639313" },
 				{ "solder-terminal": "8639241", "40 cm cable": "8639243" },
-				{ "solder-terminal": "8639252", "40 cm cable": "8639253" },
-				{ "40 cm cable": "123456", "gender changer": "123457" }
+				{ "solder-terminal": "8639252", "40 cm cable": "8639253" }
 			],
 			"Video-Audio" : [
 				{ "solder-terminal": "8639265", "40 cm cable": "8639266", "gender changer": "8639303" },
