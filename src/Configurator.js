@@ -18,7 +18,7 @@ class Configurator extends Component {
     Configurations: Array(1).fill({}),
     maxConfQuantity: 3,
     is_form_active: undefined,
-    resetConfOnChange: false,
+    resetConfOnChange: true,
     data: null,
     pricelistinfo: null
   };
