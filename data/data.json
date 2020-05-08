@@ -121,6 +121,7 @@
 				{ "solder-terminal": "8639335", "40 cm cable": "8639334" }
 			],
 			"Control" : [
+				{ "40 cm cable": "8640601", "gender changer": "8640603" },
 				{ "solder-terminal": "8639288", "40 cm cable": "8639308" },
 				{ "solder-terminal": "8639262", "40 cm cable": "8639263", "gender changer": "8639264" },
 				{ "40 cm cable": "8639324" },
@@ -260,14 +261,15 @@
 				"2.5mm + button" : 8659504,
 				"4mm" : 8659501,
 				"4mm + button" : 8659502
-			
+						
 			},
 			"TAM 401" : {
 				"2.5mm" : 8659563,
 				"2.5mm + button" : 8659564,
+			
 				"4mm + button" : 8659565,
 				"4mm" : 8659561
-			
+				
 			}
 		},
 		"FLOOR" : {
