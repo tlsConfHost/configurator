@@ -116,6 +116,22 @@ const CardMenu = props => {
     const className = props.className+"_l"+props.level;
 
     const dragStart = (e, module) => {
+        const containerNode = document.getElementById('slotNodeId')
+        let containerNode_height = 0
+        if (containerNode) {
+            containerNode_height = containerNode.offsetHeight
+        }
+
+        const img = e.target.cloneNode(true)
+        document.body.appendChild(img)
+        img.style.height=containerNode_height+'px'
+        img.style.position="absolute"
+        img.style.top="0"
+        img.className = "tempImg"
+        img.style.left="-"+img.offsetWidth+"px"
+        e.dataTransfer.setDragImage(img, 15, img.offsetHeight/2)
+        setTimeout(()=>img.remove(), 0)
+        console.log(module)
         e.dataTransfer.setData('module', JSON.stringify(module))
     }
 

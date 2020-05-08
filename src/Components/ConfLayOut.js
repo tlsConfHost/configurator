@@ -17,7 +17,7 @@ const SignalSlots = (props) => {
     const classNameList = [
         className,
         (props.Configuration.Modules[props.index].display) ? `${className}--displayed` : `${className}--hiden`,
-        ((props.Configuration.Modules[props.index].module_type)==="Power Sockets")?`${className}--ps` : null,
+        ((props.Configuration.Modules[props.index].module_type)==="Power Sockets")?`${className}--ps` : null
     ].filter(Boolean).join(" ");
     return <img
         className={classNameList}
@@ -25,6 +25,7 @@ const SignalSlots = (props) => {
         alt="signal-slot"
         onDrop={drop}
         onDragOver={dragOver}
+        id="slotNodeId"
     />
 }
 

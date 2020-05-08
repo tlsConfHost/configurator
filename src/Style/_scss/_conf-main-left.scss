@@ -286,9 +286,10 @@
         &-container_l2 {
             @include horizontal-menu;
             &-card {
+                padding: 2px 10px;
                 &-img {
-                    padding: 2px 10px;
                     cursor: grab;
+                    box-sizing: border-box;
                 }
                 &:hover {
                     z-index: 1;
