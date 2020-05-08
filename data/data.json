@@ -121,7 +121,6 @@
 				{ "solder-terminal": "8639335", "40 cm cable": "8639334" }
 			],
 			"Control" : [
-				{ "40 cm cable": "8640601", "gender changer": "8640603" },
 				{ "solder-terminal": "8639288", "40 cm cable": "8639308" },
 				{ "solder-terminal": "8639262", "40 cm cable": "8639263", "gender changer": "8639264" },
 				{ "40 cm cable": "8639324" },
