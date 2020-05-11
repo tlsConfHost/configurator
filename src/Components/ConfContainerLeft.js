@@ -123,15 +123,17 @@ const CardMenu = props => {
         }
 
         const img = e.target.cloneNode(true)
-        document.body.appendChild(img)
         img.style.height=containerNode_height+'px'
-        img.style.position="absolute"
-        img.style.top="0"
-        img.className = "tempImg"
-        img.style.left="-"+img.offsetWidth+"px"
-        e.dataTransfer.setDragImage(img, 15, img.offsetHeight/2)
-        setTimeout(()=>img.remove(), 0)
-        console.log(module)
+        var div = document.createElement('div');
+        div.appendChild(img);
+        document.querySelector('body').appendChild(div);
+
+        div.style.position="absolute"
+        div.style.top="0"
+        div.style.left="-"+img.offsetWidth+"px"
+        
+        e.dataTransfer.setDragImage(div, 15, img.offsetHeight/2)
+        setTimeout(()=>div.remove(), 0)
         e.dataTransfer.setData('module', JSON.stringify(module))
     }
 
