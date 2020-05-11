@@ -1,10 +1,15 @@
 import React from 'react';
 
-const SignalSlots = (props) => {
+const SignalSlot = (props) => {
     
     const drop = e => {
         e.preventDefault()
         const inf = JSON.parse(e.dataTransfer.getData('module'));
+
+        if (inf[2] === "Power Sockets" && props.frame_line !== "Premium Line IPL") {
+            alert("It can't be installed here.")
+            return null
+        }
 
         props.setModule(...inf, props.index, props.supportFrame_index)
     }
@@ -16,12 +21,12 @@ const SignalSlots = (props) => {
     const className = props.componentClassName+"-signal-slots";
     const classNameList = [
         className,
-        (props.Configuration.Modules[props.index].display) ? `${className}--displayed` : `${className}--hiden`,
-        ((props.Configuration.Modules[props.index].module_type)==="Power Sockets")?`${className}--ps` : null
+        (props.modules[props.index].display) ? `${className}--displayed` : `${className}--hiden`,
+        ((props.modules[props.index].module_type)==="Power Sockets")?`${className}--ps` : null
     ].filter(Boolean).join(" ");
     return <img
         className={classNameList}
-        src={props.Configuration.Modules[props.index].img}
+        src={props.modules[props.index].img}
         alt="signal-slot"
         onDrop={drop}
         onDragOver={dragOver}
@@ -30,10 +35,29 @@ const SignalSlots = (props) => {
 }
 
 const PowerSocket = (props) => {
+
+    const drop = e => {
+        e.preventDefault()
+        const inf = JSON.parse(e.dataTransfer.getData('module'));
+
+        if (inf[2] !== "Power Sockets") {
+            alert("It can't be installed here.")
+            return null
+        }
+
+        props.setPowerSocket(...inf, props.index, props.supportFrame_index)
+    }
+
+    const dragOver = e => {
+        e.preventDefault()
+    }
+
     return <img
         className={props.componentClassName+"-power-sockets"}
-        src={"img/signalslots ipl/power sockets/" + props.Configuration.platformСhoiceDesc.powerSocketArticle + ".png"}
-        alt="power-sockets"
+        src={props.powerSocketInfo.img}
+        alt="power-socket"
+        onDrop={drop}
+        onDragOver={dragOver}
     />
 }
 
@@ -58,18 +82,18 @@ const Table = (props) => {
     const componentClassName = "conf-main-left-middle-container_l1-layout-table"
 
     const layOut_content = () => {
-        const powerSokets = Array(platformСhoiceDesc["power-sockets"]).fill().map((_, index) => <PowerSocket 
-            Configuration={props.Configuration} 
+        const powerSokets = platformСhoiceDesc.power_sockets_list.map((powerSocketInfo, index) => <PowerSocket
+            setPowerSocket={props.setPowerSocket} 
+            powerSocketInfo={powerSocketInfo}
+            index={index}
             componentClassName={componentClassName+"-middle"}
             key={'power-sockets_'+index}
         />)
         const conferenceControl = Array(platformСhoiceDesc["conference-control"]).fill().map((_, index) => <ConferenceControl 
-            Configuration={props.Configuration} 
             componentClassName={componentClassName+"-middle"}
             key={'conference-control_'+index}
         />)
         const conferenceControlDoubleFrame = Array(platformСhoiceDesc["conference-control-double-frame"]).fill().map((_, index) => <ConferenceControlDoubleFrame
-            Configuration={props.Configuration} 
             componentClassName={componentClassName+"-middle"}
             key={'conference-control-double-frame_'+index}
         />)
@@ -77,8 +101,9 @@ const Table = (props) => {
             style={platformСhoiceDesc["signal-slots"] ? {display: "flex"} : {display: "none"}}
             className={componentClassName+"-middle-container"}
             key={'signal-slots'}
-        >{Array(platformСhoiceDesc["signal-slots"]).fill().map((_, index) => <SignalSlots
-            Configuration={props.Configuration}
+        >{Array(platformСhoiceDesc["signal-slots"]).fill().map((_, index) => <SignalSlot
+            modules={props.Configuration.Modules}
+            frame_line={platformСhoiceDesc.line}
             componentClassName={componentClassName+"-middle-container"}
             index={index}
             setModule={props.setModule}
@@ -122,9 +147,10 @@ const PremiumLineIPL = (props) => {
                             <span className={isCoverHiden("dot")}/>
                         </div>
                         <div className={isCoverHiden(componentClassName+"-support-frame-middle")}>
-                            {Array(supp_frame["frame-width"]).fill().map((_, index) => <SignalSlots
+                            {Array(supp_frame["frame-width"]).fill().map((_, index) => <SignalSlot
                                 key={index+i.toString()}
-                                Configuration={props.Configuration}
+                                modules={props.Configuration.Modules}
+                                frame_line={platformСhoiceDesc.line}
                                 componentClassName={componentClassName+"-support-frame-middle"}
                                 index={global_frame_index+index}
                                 setModule={props.setModule}
@@ -173,9 +199,10 @@ const UniversalLineWP = (props) => {
             <div
                 className={componentClassName+"-support-frame"}
             >
-                {Array(platformСhoiceDesc['signal-slots']).fill().map((_, index) => <SignalSlots
+                {Array(platformСhoiceDesc['signal-slots']).fill().map((_, index) => <SignalSlot
                     key={index}
-                    Configuration={props.Configuration}
+                    modules={props.Configuration.Modules}
+                    frame_line={platformСhoiceDesc.line}
                     componentClassName={componentClassName+"-support-frame"}
                     index={index}
                     setModule={props.setModule}

@@ -29,6 +29,7 @@ const ConfContainerLeft = (props) => {
             CoverHidenHandler={props.CoverHidenHandler}
             setModule={props.setModule}
             maxConfQuantity={props.maxConfQuantity}
+            setPowerSocket={props.setPowerSocket}
         />    
         <TopAndBottomMenu 
             className="conf-main-left-bottom-container"
@@ -53,17 +54,11 @@ const TopAndBottomMenu = props => {
     const filterFunc = inf => {
         const regex = /[A-Z]{1,}$/
         const bool = (
-            (
-                (!props.line)
-                ||
-                (inf.match(regex)[0] === props.line[0])
-                ||
-                (/^[\d]{1,}/.test(props.line[0]) && inf.match(regex)[0] === "IPL")
-            ) && (
-                (props.location !== "TABLE")
-                ||
-                (inf !== "Power Sockets")
-            )
+            (!props.line)
+            ||
+            (inf.match(regex)[0] === props.line[0])
+            ||
+            (/^[\d]{1,}/.test(props.line[0]) && inf.match(regex)[0] === "IPL")
         )
         return bool
     }
@@ -228,6 +223,7 @@ const ConfContainerLeftMiddle = (props) => {
                         CoverHidenHandler={props.CoverHidenHandler}
                         Configuration={props.Configuration}
                         setModule={props.setModule}
+                        setPowerSocket={props.setPowerSocket}
                     />
                 : null}
         </TabPanel>)}
@@ -245,6 +241,7 @@ const RepresentationOfConf = (props) => {
             <Table
                 Configuration={props.Configuration}
                 setModule={props.setModule}
+                setPowerSocket={props.setPowerSocket}
             /> 
         : (props.Configuration.platformСhoiceDesc.line === "Premium Line IPL") ? 
             <PremiumLineIPL
@@ -254,7 +251,6 @@ const RepresentationOfConf = (props) => {
         : (props.Configuration.platformСhoiceDesc.line === "Standard Line IPL") ? 
             <StandardLineIPL
                 Configuration={props.Configuration}
-                setModule={props.setModule}
             />
         : (props.Configuration.platformСhoiceDesc.line === "Universal Line WP") ? 
             <UniversalLineWP 
@@ -264,7 +260,6 @@ const RepresentationOfConf = (props) => {
         : (props.Configuration.platformСhoiceDesc.line === "Standard Line WP") ? 
             <StandardLineWP 
                 Configuration={props.Configuration}
-                setModule={props.setModule}
             />
         :
             <ConfLayOutFloor

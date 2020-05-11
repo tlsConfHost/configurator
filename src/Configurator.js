@@ -61,17 +61,20 @@ class Configurator extends Component {
     }
     inf.line_desc = this.state.pricelistinfo[frameInf.article].description1;
     inf.frame_desc = this.state.pricelistinfo[frameInf.article].description2;
-    if (inf["power-sockets"] > 0) {
-      inf.powerSocketList = this.state.data.PowerSocket.reduce((obj, article) => (this.state.pricelistinfo[article] ? {...obj, [this.state.pricelistinfo[article].description1]: article} : obj), {});
-      inf.powerSocketDesc = Object.keys(inf.powerSocketList)[0]
-      inf.powerSocketArticle = inf.powerSocketList[inf.powerSocketDesc];
-    }
+
     inf.empty_module = {
       img: "img/layout-parts/empty-signal-slot-" + (line==="Universal Line WP" ? "wp" : "ipl") + ".png",
       display: true,
     }
+
+    inf.empty_power_socket = {
+      img: "img/signalslots ipl/power sockets/psSlot.png"
+    }
+
+    inf.power_sockets_list = Array(inf["power-sockets"]).fill(inf.empty_power_socket)
+
     const copyOfConfs=this.deep_ConfigurationsCopy();
-    copyOfConfs[this.state.ConfNumber] = {}
+    copyOfConfs[this.state.ConfNumber] = {};
     copyOfConfs[this.state.ConfNumber].platformСhoiceDesc = inf;
     copyOfConfs[this.state.ConfNumber].Modules = Array(inf["signal-slots"]).fill(inf.empty_module);
 
@@ -163,6 +166,16 @@ class Configurator extends Component {
     this.setState({Configurations: copyOfConfs})
   }
 
+  setPowerSocket = (module_inf, module_series, module_type, index) => {
+    const copyOfConfs = this.deep_ConfigurationsCopy();
+    const power_sockets_list = copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.power_sockets_list;
+    module_inf.module_series = module_series;
+    module_inf.module_type = module_type;
+    module_inf.desc = this.state.pricelistinfo[module_inf.article] && this.state.pricelistinfo[module_inf.article].description1
+    power_sockets_list[index] = module_inf;
+    this.setState({Configurations: copyOfConfs});
+  }
+
   confNumberHandler = (number) => {
     this.setState({ConfNumber: number})
   }
@@ -215,6 +228,14 @@ class Configurator extends Component {
     this.setState({Configurations: copyOfConfs})
   }
 
+  powerSocketResetHandler = (confNumber, indexOfPowerSocket) => {
+    const copyOfConfs=this.deep_ConfigurationsCopy();
+    const platformСhoiceDesc = copyOfConfs[this.state.ConfNumber].platformСhoiceDesc
+    const power_sockets_list = platformСhoiceDesc.power_sockets_list;
+    power_sockets_list[indexOfPowerSocket] = platformСhoiceDesc.empty_power_socket
+    this.setState({Configurations: copyOfConfs})
+  }
+
   frameResetHandler = (indexOfConf) => {
     const copyOfConfs=this.deep_ConfigurationsCopy();
     if (indexOfConf !== undefined) {
@@ -233,20 +254,6 @@ class Configurator extends Component {
     const copyOfConfs=this.deep_ConfigurationsCopy();
     copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.isCoverHiden = !copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.isCoverHiden;
     this.setState({Configurations: copyOfConfs});
-  }
-
-  powerSocketMenuHandler = (article) => {
-    const desc = this.state.pricelistinfo[article].description1
-    const newInf = {
-      powerSocketDesc: desc,
-      powerSocketArticle: article
-    }
-    const copyOfConfs=this.deep_ConfigurationsCopy()
-    copyOfConfs[this.state.ConfNumber].platformСhoiceDesc = {
-      ...copyOfConfs[this.state.ConfNumber].platformСhoiceDesc,
-      ...newInf,
-    }
-    this.setState({Configurations: copyOfConfs})
   }
 
   articlesToPrint_handler = (confNum) => {
@@ -277,8 +284,8 @@ class Configurator extends Component {
 
     const powerSocket_articles = []
     if (configuration.platformСhoiceDesc["power-sockets"]) {
-      for (let i=0; i<configuration.platformСhoiceDesc["power-sockets"]; i++) {
-        powerSocket_articles.push(configuration.platformСhoiceDesc.powerSocketArticle.toString());
+      for (const powerSocket of configuration.platformСhoiceDesc.power_sockets_list) {
+        powerSocket_articles.push(powerSocket.article ? powerSocket.article.toString() : null);    
       }
     }
 
@@ -351,6 +358,7 @@ class Configurator extends Component {
             AddConfHandler={this.addConfHandler}
             maxConfQuantity={this.state.maxConfQuantity}
             frameResetHandler={this.frameResetHandler}
+            setPowerSocket={this.setPowerSocket}
           />
           <ConfContainerRight
             ConfNumber={this.state.ConfNumber}
@@ -362,8 +370,8 @@ class Configurator extends Component {
             frame_sub_typeHandler={this.frame_sub_typeHandler}
             ModuleResetHandler={this.moduleResetHandler}
             frameResetHandler={this.frameResetHandler}
-            powerSocketMenuHandler={this.powerSocketMenuHandler}
             printForm_handler={this.printForm_handler}
+            powerSocketResetHandler={this.powerSocketResetHandler}
           />
           <PrintForm pricelistinfo={this.state.pricelistinfo} confNum={this.state.right_ConfNumber} articlesToPrint_handler={this.articlesToPrint_handler} is_form_active={this.state.is_form_active} printForm_handler={this.printForm_handler} />
         </div>

@@ -8,15 +8,15 @@ const ConfContainerRight = (props) => {
               Configuration={props.Configurations[props.ConfNumber]}
               frame_sub_typeHandler={props.frame_sub_typeHandler}
             />
-            <ConfContainerRightBottom 
+            <ConfContainerRightBottom
               Configurations={props.Configurations}
               QuantityOfConf={props.QuantityOfConf}
               ModuleMenuHandler={props.ModuleMenuHandler}
               ModuleResetHandler={props.ModuleResetHandler}
               frameResetHandler={props.frameResetHandler}
-              powerSocketMenuHandler={props.powerSocketMenuHandler}
               printForm_handler={props.printForm_handler}
               pricelistinfo={props.pricelistinfo}
+              powerSocketResetHandler={props.powerSocketResetHandler}
             />
         </div>
     );
@@ -97,15 +97,15 @@ const ConfContainerRightBottom = (props) => {
             key={confNumber}
           >
             {(conf.platformСhoiceDesc) ? [
-              <ConfList 
+              <ConfList
                 key={confNumber}
                 confNumber={confNumber}
                 Configuration={conf}
                 ModuleMenuHandler={props.ModuleMenuHandler}
                 ModuleResetHandler={props.ModuleResetHandler}
                 frameResetHandler={props.frameResetHandler}
-                powerSocketMenuHandler={props.powerSocketMenuHandler}
                 pricelistinfo={props.pricelistinfo}
+                powerSocketResetHandler={props.powerSocketResetHandler}
               /> ,
               <div key={confNumber+"wrapper"} className="conf-main-right-bottom_l1-print-conf-list">
                 <button
@@ -207,15 +207,16 @@ const ConfList = props => {
         >
           {props.pricelistinfo[frame.article].description1} {props.pricelistinfo[frame.article].description2 && `(${props.pricelistinfo[frame.article].description2})`}
         </ConfDescLine>) : null}
-        {(platformСhoiceDesc["power-sockets"]) ? <ConfDescLine
+        {props.Configuration.platformСhoiceDesc.power_sockets_list.map((module, index) => <ConfDescLine
           elementClassName={elementClassName}
-          article={platformСhoiceDesc.powerSocketArticle}
-          MenuHandler={props.powerSocketMenuHandler}
-          MenuContent={platformСhoiceDesc.powerSocketList}
+          article={module.article}
           confNumber={props.confNumber}
+          ReseteHandler={props.powerSocketResetHandler}
+          index={index}
+          key={module.article+""+index}
         >
-          {platformСhoiceDesc.powerSocketDesc} (x{platformСhoiceDesc["power-sockets"]})
-        </ConfDescLine> : null}
+          {module.desc}
+        </ConfDescLine>)}
         {props.Configuration.Modules.map((module, index) => <ConfDescLine
           confNumber={props.confNumber}
           elementClassName={elementClassName}
