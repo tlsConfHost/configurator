@@ -36,7 +36,7 @@ const ConfContainerLeft = (props) => {
             pathArray={[]}
             level={0}
             dataObj={props.modulesForBottomMenu}
-            draggable={true && Boolean(props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc['signal-slots'])}
+            draggable={Boolean(props.Configuration.platformСhoiceDesc && (props.Configuration.platformСhoiceDesc['signal-slots'] || props.Configuration.platformСhoiceDesc['power-sockets']))}
             line={props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc.line.match(/[A-Z0-9]{1,}$/)}
             location={props.Configuration.platformСhoiceDesc && props.Configuration.platformСhoiceDesc.location}
             pricelistinfo={props.pricelistinfo}
