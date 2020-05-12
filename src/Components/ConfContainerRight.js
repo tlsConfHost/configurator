@@ -17,6 +17,7 @@ const ConfContainerRight = (props) => {
               printForm_handler={props.printForm_handler}
               pricelistinfo={props.pricelistinfo}
               powerSocketResetHandler={props.powerSocketResetHandler}
+              powerSocketMenuHandler={props.powerSocketMenuHandler}
             />
         </div>
     );
@@ -106,6 +107,7 @@ const ConfContainerRightBottom = (props) => {
                 frameResetHandler={props.frameResetHandler}
                 pricelistinfo={props.pricelistinfo}
                 powerSocketResetHandler={props.powerSocketResetHandler}
+                powerSocketMenuHandler={props.powerSocketMenuHandler}
               /> ,
               <div key={confNumber+"wrapper"} className="conf-main-right-bottom_l1-print-conf-list">
                 <button
@@ -211,6 +213,8 @@ const ConfList = props => {
           elementClassName={elementClassName}
           article={module.article}
           confNumber={props.confNumber}
+          MenuContent={(module.article_list && Object.values(module.article_list).length>1) && module.article_list}
+          MenuHandler={props.powerSocketMenuHandler}
           ReseteHandler={props.powerSocketResetHandler}
           index={index}
           key={module.article+""+index}

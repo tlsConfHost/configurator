@@ -189,13 +189,31 @@ class Configurator extends Component {
 
   moduleMenuHandler = (article, index) => {
     const copyOfConfs=this.deep_ConfigurationsCopy();
-    const desc = this.state.pricelistinfo[article].description1 + (this.state.pricelistinfo[article].description2 && `(${this.state.pricelistinfo[article].description2})`)
+    const desc = this.state.pricelistinfo[article] && (
+      this.state.pricelistinfo[article].description1 + (this.state.pricelistinfo[article].description2 && `(${this.state.pricelistinfo[article].description2})`)
+    )
     const newInf={
       article: article,
       desc: desc,
     }
     copyOfConfs[this.state.ConfNumber].Modules[index] = {
       ...copyOfConfs[this.state.ConfNumber].Modules[index],
+      ...newInf
+    }
+    this.setState({Configurations: copyOfConfs})
+  }
+
+  powerSocketMenuHandler = (article, index) => {
+    const copyOfConfs=this.deep_ConfigurationsCopy();
+    const desc = this.state.pricelistinfo[article] && (
+      this.state.pricelistinfo[article].description1 + (this.state.pricelistinfo[article].description2 && `(${this.state.pricelistinfo[article].description2})`)
+    )
+    const newInf={
+      article: article,
+      desc: desc,
+    }
+    copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.power_sockets_list[index] = {
+      ...copyOfConfs[this.state.ConfNumber].platformСhoiceDesc.power_sockets_list[index],
       ...newInf
     }
     this.setState({Configurations: copyOfConfs})
@@ -372,6 +390,7 @@ class Configurator extends Component {
             frameResetHandler={this.frameResetHandler}
             printForm_handler={this.printForm_handler}
             powerSocketResetHandler={this.powerSocketResetHandler}
+            powerSocketMenuHandler={this.powerSocketMenuHandler}
           />
           <PrintForm pricelistinfo={this.state.pricelistinfo} confNum={this.state.right_ConfNumber} articlesToPrint_handler={this.articlesToPrint_handler} is_form_active={this.state.is_form_active} printForm_handler={this.printForm_handler} />
         </div>
