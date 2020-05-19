@@ -123,7 +123,7 @@ class Configurator extends Component {
     }
     //post check is slots weight was found
     if (module_inf.slots_takes===undefined) {
-      alert(`Error, module-${module_inf.article} cant be found in table, write to us!`);
+      alert(`Error, module "${module_inf.article}" width can't be found in table, please write to us!`);
       return;
     }
 
