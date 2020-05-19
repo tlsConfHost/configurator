@@ -129,6 +129,8 @@
 				{ "40 cm cable": "8640601" },
 				{ "USB Typ A": "8639412" },
 				{ "USB Typ A f/f": "8640607", "Typ A f/Typ C m": "8639427", "Typ A f/m": "8639429" },
+				{ "40 cm cable": "8640600" },
+				{ "USB Typ C f/f": "8639426", "Typ Cf/m": "8639425", "Typ C f/Typ A m": "8639428" },
 				{ "solder-terminal": "8639288", "40 cm cable": "8639308" },
 				{ "solder-terminal": "8639262", "40 cm cable": "8639263", "gender changer": "8639264" },
 				{ "40 cm cable": "8639324" },
