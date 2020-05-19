@@ -131,16 +131,17 @@
 				{ "USB Typ A f/f": "8640607", "Typ A f/Typ C m": "8639427", "Typ A f/m": "8639429" },
 				{ "40 cm cable": "8640600" },
 				{ "USB Typ C f/f": "8639426", "Typ Cf/m": "8639425", "Typ C f/Typ A m": "8639428" },
-				{ "solder-terminal": "8639288", "40 cm cable": "8639308" },
-				{ "solder-terminal": "8639262", "40 cm cable": "8639263", "gender changer": "8639264" },
 				{ "40 cm cable": "8639324" },
 				{ "40 cm cable": "8639327", "gender changer": "8639328" },
+				{ "solder-terminal": "8639288", "40 cm cable": "8639308" },
+				{ "solder-terminal": "8639262", "40 cm cable": "8639263", "gender changer": "8639264" },
+				{ "40 cm cable": "8639354" },
 				{ "40 cm cable": "8639356" },
 				{ "40 cm cable": "8639357" },
 				{ "40 cm cable": "8639369" },
 				{ "40 cm cable": "8639386" },
-				{ "40 cm cable": "8639368" },
-				{ "40 cm cable": "8639354" }
+				{ "40 cm cable": "8639368" }
+				
 			],
 			"Optic" : [
 				{ "gender changer": "8639391" },
